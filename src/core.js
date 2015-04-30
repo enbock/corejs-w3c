@@ -6,6 +6,8 @@
  * @author Endre Bock <corejs-w3c@itbock.de>
  */
  
+ 
+ 
  /**
  * DOM Implementation of event listener and target.
  * The class is mainly a wrapper of an XMLElement to get the DOM event handling
