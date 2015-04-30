@@ -11,7 +11,7 @@ As program/architecture design to make tools and applications should work in a s
 * Controller: Interact with view object via CustomEvent protocols and trigger model object in same way (Translate View Events into Model Events and backward). Connect logical activities between multiple view and model objects.
 
 ## JavaScript style
-As language style and way to inheritance objects will be use the ECMAScript 5 [Classical inheritance with Object.create()]()
+As language style and way to inheritance objects will be use the ECMAScript 5 [Classical inheritance with Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Example:_Classical_inheritance_with_Object.create)
 
 # Features
 * Native Include/Require system
