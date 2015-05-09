@@ -4,9 +4,6 @@ title: CoreJs-W3C
 permalink: /index.html
 ---
 
-# corejs-w3c
-Core Library for W3C Browser Frontside Applications.
-
 # Destination
 The goal of this library is, to provide core functionalities in kind of DDD and 
 Di style which uses all W3C Draft and Recomented functionalities without using 
