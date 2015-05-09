@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CoreJs-W3C
+title: CoreJS-W3C
 permalink: /index.html
 ---
 
