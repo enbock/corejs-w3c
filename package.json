@@ -9,10 +9,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/nodejitsu/browsenpm.org"
+		"url": "https://github.com/enbock/corejs-w3c"
 	},
 	"bugs": {
-		"url": "https://github.com/nodejitsu/browsenpm.org/issues"
+		"url": "https://github.com/enbock/corejs-w3c/issues"
 	},
 	"keywords": [
 		"enbock",
