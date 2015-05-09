@@ -1,6 +1,6 @@
 "use strict";
 
-/* global describe, beforeEach, afterEach, it */
+/* global global, describe, beforeEach, afterEach, it */
 
 var chai = require("chai");
 var sinon = require("sinon");
@@ -8,8 +8,8 @@ var sinon = require("sinon");
 /**
  * DOM stack
  */
-var document    = {};
-function EventTarget() {};
+global.document    = {};
+global.EventTarget = function () {};
 
 require("../src/core.js");
 
