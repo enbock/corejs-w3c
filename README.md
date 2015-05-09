@@ -2,16 +2,23 @@
 Core Library for W3C Browser Frontside Applications.
 
 # Destination
-The goal of this library is, to provide core functionalities in kind of DDD and Di style which uses all W3C Draft and Recomented functionalities without using PolyFills.
+The goal of this library is, to provide core functionalities in kind of DDD and 
+Di style which uses all W3C Draft and Recomented functionalities without using 
+PolyFills.
 ## Design goals
-As program/architecture design to make tools and applications should work in a strict MVC pattern with follow elements:
+As program/architecture design to make tools and applications should work in a 
+strict MVC pattern with follow elements:
 * Model: Backend objects for connection to external or internal data services
 * Bridge: Passive data structres
-* View: Front side object with "knows" the bound DOM part and translate user activities into program CustomEvents
-* Controller: Interact with view object via CustomEvent protocols and trigger model object in same way (Translate View Events into Model Events and backward). Connect logical activities between multiple view and model objects.
+* View: Front side object with "knows" the bound DOM part and translate user 
+* activities into program CustomEvents
+* Controller: Interact with view object via CustomEvent protocols and trigger 
+* model object in same way (Translate View Events into Model Events and 
+* backward). Connect logical activities between multiple view and model objects.
 
 ## JavaScript style
-As language style and way to inheritance objects will be use the ECMAScript 5 [Classical inheritance with Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Example:_Classical_inheritance_with_Object.create)
+As language style and way to inheritance objects will be use the ECMAScript 5 
+[Classical inheritance with Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Example:_Classical_inheritance_with_Object.create)
 
 # Features
 * Native Include/Require system

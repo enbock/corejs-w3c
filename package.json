@@ -1,0 +1,21 @@
+{
+    "name": "corejs-w3c",
+    "version": "0.1.0",
+    "description": "Cure library to use w3c functionality as they is.",
+    "main": "src/core.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "JUNIT_REPORT_PATH=$CIRCLE_TEST_REPORTS/junit.xml istanbul cover --dir $CIRCLE_ARTIFACTS _mocha -- --reporter mocha-jenkins-reporter --recursive tests"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "chai": "*",
+        "sinon": "*",
+        "istanbul": "*",
+        "mocha-jenkins-reporter": "*"
+    }
+}
