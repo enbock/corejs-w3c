@@ -2,41 +2,34 @@
 
 /* global global, describe, beforeEach, afterEach, it */
 
-var chai = require("chai");
+var chai  = require("chai");
 var sinon = require("sinon");
-
-/**
- * DOM stack
- */
-global.document = {
-	createElement: function () { }
-};
-global.EventTarget = function () { };
-
-console.log(require("../src/core.js"));
+require("./load")("src/core.js", ["DOMEventListener"]);
 
 describe("DOMEventListener", function () {
 	var testObject;
 	var documentMock;
 	var domMock;
+	var eventTarget;
 
 	beforeEach(function () {
-		domMock = sinon.mock();
+		eventTarget  = new EventTarget();
+		domMock      = sinon.mock(eventTarget);
 		documentMock = sinon.mock(document);
 		documentMock.expects("createElement")
-			.once().withExactArgs('xml').returns(domMock);
+			.once().withExactArgs('xml').returns(eventTarget);
 		testObject = new DOMEventListener();
 	});
 
 	afterEach(function () {
-		domMock.verify();
 		documentMock.verify();
 	});
 
 	describe("#addEventListener", function () {
-		it("should all dom addEventListener", function () {
+		it("should call dom addEventListener", function () {
 			domMock.expects("addEventListener").once().withExactArgs(1, 2, 3);
 			testObject.addEventListener(1, 2, 3);
+			domMock.verify();
 		});
 	});
 });

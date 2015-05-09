@@ -25,7 +25,6 @@ function DOMEventListener()
 	 * @protected
 	 */
 	this._dom = document.createElement('xml');
-	this._dom['scope'] = this;
 }
 DOMEventListener.prototype = Object.create(EventTarget.prototype);
 DOMEventListener.prototype.constructor = DOMEventListener;
