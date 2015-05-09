@@ -5,6 +5,7 @@
 var chai  = require("chai");
 var sinon = require("sinon");
 require("./load")("src/core.js", ["DOMEventListener"]);
+require("../src/core.js");
 
 describe("DOMEventListener", function () {
 	var testObject;
