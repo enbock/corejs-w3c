@@ -5,13 +5,13 @@
 var chai = require("chai");
 var sinon = require("sinon");
 
-require("../src/core.js");
-
 /**
  * DOM stack
  */
 var document    = {};
 var EventTarget = {};
+
+require("../src/core.js");
 
 describe("DOMEventListener", function() {
 	var testObject;
