@@ -5,7 +5,7 @@
 	"author": "Endre Bock <dev@itbock.de>",
 	"main": "src/core.js",
 	"scripts": {
-		"test": "JUNIT_REPORT_PATH=$CIRCLE_TEST_REPORTS/junit.xml istanbul cover --dir $CIRCLE_ARTIFACTS _mocha -- --reporter mocha-jenkins-reporter --recursive tests"
+		"test": "mocha --recursive tests"
 	},
 	"repository": {
 		"type": "git",
@@ -25,9 +25,7 @@
 	"devDependencies": {
 		"mocha": "*",
 		"chai": "*",
-		"sinon": "*",
-		"istanbul": "*",
-		"mocha-jenkins-reporter": "*"
+		"sinon": "*"
 	},
 	"license": "MIT"
 }
