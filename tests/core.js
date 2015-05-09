@@ -13,7 +13,7 @@ global.document = {
 };
 global.EventTarget = function () { };
 
-require("../src/core.js");
+require("../src/core.js")(this);
 
 describe("DOMEventListener", function () {
 	var testObject;
