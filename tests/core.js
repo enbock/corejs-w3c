@@ -9,7 +9,7 @@ var sinon = require("sinon");
  * DOM stack
  */
 var document    = {};
-var EventTarget = {};
+function EventTarget() {};
 
 require("../src/core.js");
 
