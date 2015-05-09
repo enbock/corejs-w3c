@@ -26,7 +26,7 @@ describe("DOMEventListener", function () {
 	});
 
 	describe("#addEventListener", function () {
-		it("should call dom addEventListener", function () {
+		it("should call DOM EventTarget::addEventListener", function () {
 			domMock.expects("addEventListener").once().withExactArgs(1, 2, 3);
 			testObject.addEventListener(1, 2, 3);
 			domMock.verify();
