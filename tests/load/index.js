@@ -1,14 +1,18 @@
 /* global global */
-var fs = require("fs");
-require("./domStack.js");
-
-module.exports = function (file, classList) {
-	var functions = new Function(
-		String(fs.readFileSync(file)) +
-		"return [" + classList.join(",") + "];"
-	)();
-	for (var index = 0; index < classList.length; index++) {
-		var element     = classList[index];
-		global[element] = functions[index];
-	}
+/**
+ * DOM stack
+ */
+global.document = {
+	createElement: function () { }
 };
+global.EventTarget = function () { };
+global.EventTarget.prototype.addEventListener = function () { };
+global.EventTarget.prototype.removeEventListener = function () { };
+global.EventTarget.prototype.dispatchEvent = function () { };
+global.CustomEvent = function (type, init) {
+	this.type = type;
+	/** https://developer.mozilla.org/en-US/docs/Web/API/Event/detail */
+	this.detail = init instanceof Object ? init.detail : undefined;
+};
+global.XMLHttpRequest = function () { };
+global.FormData = function () { };
