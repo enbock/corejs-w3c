@@ -11,4 +11,4 @@ module.exports = function (file, classList) {
 		var element     = classList[index];
 		global[element] = functions[index];
 	}
-}
+};

@@ -1,6 +1,7 @@
-"use strict";
-
+/* global DOMEventListener */
+/* global EventTarget */
 /* global global, describe, beforeEach, afterEach, it */
+"use strict";
 
 var chai  = require("chai");
 var sinon = require("sinon");
@@ -29,6 +30,26 @@ describe("DOMEventListener", function () {
 		it("should call DOM EventTarget::addEventListener", function () {
 			domMock.expects("addEventListener").once().withExactArgs(1, 2, 3);
 			testObject.addEventListener(1, 2, 3);
+			domMock.verify();
+		});
+	});
+	
+	describe("#removeEventListener", function () {
+		it("should call DOM EventTarget::removeEventListener", function () {
+			domMock.expects("removeEventListener")
+				.once()
+				.withExactArgs(1, 2, 3);
+			testObject.removeEventListener(1, 2, 3);
+			domMock.verify();
+		});
+	});
+	
+	describe("#dispatchEvent", function () {
+		it("should call DOM EventTarget::dispatchEvent", function () {
+			domMock.expects("dispatchEvent")
+				.once()
+				.withExactArgs(1);
+			testObject.dispatchEvent(1);
 			domMock.verify();
 		});
 	});
