@@ -6,7 +6,8 @@
  */
  try { module !== undefined; } catch (e) {
 	// import module into current context(window)
-	CoreJs = module = {exports: {}};
+	module = {};
+	CoreJs = module.exports = {};
  }
 
 /**
