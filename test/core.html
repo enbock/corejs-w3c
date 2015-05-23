@@ -24,7 +24,8 @@ permalink: /test/core.html
 <textarea cols="80" rows="10" id="code">h = new CoreEvent.Handler();
 r = new Ajax("get", "http://enbock.github.io/corejs-w3c/");
 r.addEventListener(Ajax.LOAD, h);
-r.load();</textarea><br>
+r.load();
+return "See now in the console output.";</textarea><br>
 <button onclick="runCode(this);">Run</button><br>
-<textarea cols="80" rows="10" id="result" readonly></textarea><br>
+<textarea cols="80" rows="3" id="result" readonly></textarea><br>
 <i>See also text in console.</i>
