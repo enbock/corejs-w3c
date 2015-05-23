@@ -30,9 +30,11 @@ describe("Event.Listener {DOMEventListener}", function () {
 	var fakeDocument = {
 		createElement: function () { }
 	};
+	var save = {};
 
 	beforeEach(function () {
 		sandbox = sinon.sandbox.create();
+		save.document = CoreJs.DOMEventListener.document;
 		CoreJs.DOMEventListener.document = fakeDocument;
 	
 		eventTarget = new EventTarget();
@@ -47,6 +49,7 @@ describe("Event.Listener {DOMEventListener}", function () {
 	afterEach(function () {
 		documentMock.verify();
 		sandbox.restore();
+		CoreJs.DOMEventListener.document = save.document;
 	});
 
 	describe("#addEventListener", function () {
@@ -90,10 +93,13 @@ describe("Ajax", function () {
 	var fakeDocument = {
 		createElement: function () { }
 	};
+	var save = {};
 
 	beforeEach(function () {
 		sandbox = sinon.sandbox.create();
+		save.xhr = CoreJs.Ajax.XHRSystem;
 		CoreJs.Ajax.XHRSystem = sinon.FakeXMLHttpRequest;
+		save.document = CoreJs.DOMEventListener.document;
 		CoreJs.DOMEventListener.document = fakeDocument;
 		
 		eventTarget = new EventTarget();
@@ -110,6 +116,8 @@ describe("Ajax", function () {
 
 	afterEach(function () {
 		sandbox.restore();
+		CoreJs.Ajax.XHRSystem = save.xhr;
+		CoreJs.DOMEventListener.document = save.document;
 	});
 
 	it("#constructor", function () {
