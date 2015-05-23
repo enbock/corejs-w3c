@@ -283,7 +283,9 @@ Ajax.XHRSystem = XMLHttpRequest;
  */
 Ajax.prototype.load = function () {
 	this._request.open(this._method, this._url, true);
-	this._request.setRequestHeader("Content-Type", this.contentType);
+	// Request header field Content-Type is not allowed by Access-Control-Allow-Headers.
+	// Let's think about later on ;)
+	//this._request.setRequestHeader("Content-Type", this.contentType);
 	this._request.send(this._sendData);
 };
 

@@ -127,9 +127,11 @@ describe("Ajax", function () {
 	describe("#load", function () {
 		it("should open the connection", function () {
 			var requestMock = sinon.mock(testObject._request);
+			/*
 			requestMock.expects("setRequestHeader")
 				.once()
 				.withExactArgs("Content-Type", "application/binary");
+			*/
 			requestMock.expects("open")
 				.once()
 				.withExactArgs("post", 'http://itbock.de', true);
