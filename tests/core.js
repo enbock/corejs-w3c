@@ -1,15 +1,9 @@
+/* global sinon */
+/* global expect */
+/* global CoreJs */
 /* global DOMEventListener */
 /* global EventTarget */
 /* global global, describe, beforeEach, afterEach, it */
-"use strict";
-
-require("./load");
-var CoreJs = require("../src/core.js");
-
-var chai = require('chai')
-  , expect = chai.expect
-  , should = chai.should();
-var sinon  = require("sinon");
 
 /**
  * Base event functionality.
@@ -128,27 +122,54 @@ describe("Ajax", function () {
 		
 		it("should trigger the load event", function () {
 			var spy = eventMock.expects("dispatchEvent").once();
-			var event = new CoreJs.Event("load");
-			testObject._request.onload(event);
+			testObject._request.response = 1;
+			testObject._request.responseText = 2;
+			testObject._request.responseType = 3;
+			testObject._request.responseURL = 4;
+			testObject._request.responseXML = 5;
+			testObject._request.status = 6;
+			
+			testObject._request.onload("not used");
+			
 			expect(spy.lastCall.args).to.have.length(1);
 			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CustomEvent);
 			expect(spy.lastCall.args[0].type)
 				.to.be.equal(CoreJs.Ajax.Event.LOAD);
-			expect(spy.lastCall.args[0].detail).to.have.all.keys(["event"]);
-			expect(spy.lastCall.args[0].detail.event).to.be.equal(event);
+			expect(spy.lastCall.args[0].detail).to.have.all.keys([
+				"response"
+				, "responseText"
+				, "responseType"
+				, "responseURL"
+				, "responseXML"
+				, "status"
+			]);
+			expect(spy.lastCall.args[0].detail.response).to.be.equal(1);
+			expect(spy.lastCall.args[0].detail.responseText).to.be.equal(2);
+			expect(spy.lastCall.args[0].detail.responseType).to.be.equal(3);
+			expect(spy.lastCall.args[0].detail.responseURL).to.be.equal(4);
+			expect(spy.lastCall.args[0].detail.responseXML).to.be.equal(5);
+			expect(spy.lastCall.args[0].detail.status).to.be.equal(6);
 			eventMock.verify();
 		});
 		
 		it("should trigger the progress event", function () {
 			var spy = eventMock.expects("dispatchEvent").once();
-			var event = new CoreJs.Event("progress");
+			var event = {
+				lengthComputable: true,
+				loaded: 10,
+				total: 100
+			};
+			
 			testObject._request.onprogress(event);
+			
 			expect(spy.lastCall.args).to.have.length(1);
 			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CustomEvent);
-			expect(spy.lastCall.args[0].extra)
+			expect(spy.lastCall.args[0].type)
 				.to.be.equal(CoreJs.Ajax.Event.PROGRESS);
-			expect(spy.lastCall.args[0].detail).to.have.all.keys(["event"]);
-			expect(spy.lastCall.args[0].detail.event).to.be.equal(event);
+			console.log(spy.lastCall.args[0].detail);
+			expect(spy.lastCall.args[0].detail.lengthComputable).is.true;
+			expect(spy.lastCall.args[0].detail.loaded).is.equal(10);
+			expect(spy.lastCall.args[0].detail.total).is.equal(100);
 			eventMock.verify();
 		});
 	});

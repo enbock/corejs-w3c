@@ -5,7 +5,7 @@
 	"author": "Endre Bock <dev@itbock.de>",
 	"main": "src/core.js",
 	"scripts": {
-		"test": "mocha --recursive tests"
+		"test": "mocha tests/index.js"
 	},
 	"repository": {
 		"type": "git",

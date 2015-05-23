@@ -203,7 +203,14 @@ function Ajax(method, url, sendData) {
 	 */
 	this._request.onload = function (event) {
 		self.dispatchEvent(
-			new Ajax.Event(Ajax.Event.LOAD, {event: event})
+			new Ajax.Event(Ajax.Event.LOAD, {
+				response: self._request.response,
+				responseText: self._request.responseText,
+				responseType: self._request.responseType,
+				responseURL: self._request.responseURL,
+				responseXML: self._request.responseXML,
+				status: self._request.status
+			})
 		);
 	};
 	
@@ -213,7 +220,11 @@ function Ajax(method, url, sendData) {
 	 */
 	this._request.onprogress = function (event) {
 		self.dispatchEvent(
-			new Ajax.Event(Ajax.Event.PROGRESS, {event: event})
+			new Ajax.Event(Ajax.Event.PROGRESS, {
+				lengthComputable: event.lengthComputable,
+				loaded: event.loaded,
+				total: event.total
+			})
 		);
 	};
 }
@@ -229,8 +240,7 @@ module.exports.Ajax = Ajax.prototype.constructor = Ajax;
  */
 Ajax.Event = function(typeArg, detail) { 
 	var event = CoreEvent.call(this, typeArg, detail);
-	event.extra = event.type;
-	return(event);
+	return event;
 };
 Ajax.Event.prototype = Object.create(CustomEvent.prototype);
 Ajax.Event.prototype.constructor = Ajax.Event;
