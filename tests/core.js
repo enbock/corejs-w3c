@@ -131,7 +131,7 @@ describe("Ajax", function () {
 			var event = new CoreJs.Event("load");
 			testObject._request.onload(event);
 			expect(spy.lastCall.args).to.have.length(1);
-			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CoreJs.Ajax.Event);
+			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CustomEvent);
 			expect(spy.lastCall.args[0].type)
 				.to.be.equal(CoreJs.Ajax.Event.LOAD);
 			expect(spy.lastCall.args[0].detail).to.have.all.keys(["event"]);
@@ -144,8 +144,8 @@ describe("Ajax", function () {
 			var event = new CoreJs.Event("progress");
 			testObject._request.onprogress(event);
 			expect(spy.lastCall.args).to.have.length(1);
-			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CoreJs.Ajax.Event);
-			expect(spy.lastCall.args[0].type)
+			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CustomEvent);
+			expect(spy.lastCall.args[0].extra)
 				.to.be.equal(CoreJs.Ajax.Event.PROGRESS);
 			expect(spy.lastCall.args[0].detail).to.have.all.keys(["event"]);
 			expect(spy.lastCall.args[0].detail.event).to.be.equal(event);

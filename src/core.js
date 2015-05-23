@@ -122,7 +122,15 @@ function CoreEvent(typeArg, detail) {
 	if (detail == undefined) {
 		detail = {};
 	}
-	CustomEvent.call(this, typeArg, {detail: detail});
+	/**
+	 * Error:
+	 * Failed to construct 'CustomEvent': Please use the 'new' operator, this 
+	 * DOM object constructor cannot be called as a function.
+	 * 
+	 * In reason of that the browser did not allow to extend CustomEvent in
+	 * common way, we use our event class only as constant holder. 
+	 */
+	return new CustomEvent(typeArg, {detail: detail});
 }
 CoreEvent.prototype = Object.create(CustomEvent.prototype);
 module.exports.Event = CoreEvent.prototype.constructor = CoreEvent;
@@ -220,9 +228,11 @@ module.exports.Ajax = Ajax.prototype.constructor = Ajax;
  * @param {(Object|String|Number)} [detail] - Data to transport over the event.
  */
 Ajax.Event = function(typeArg, detail) { 
-	CoreEvent.call(this, typeArg, detail);
+	var event = CoreEvent.call(this, typeArg, detail);
+	event.extra = event.type;
+	return(event);
 };
-Ajax.Event.prototype = Object.create(CoreEvent.prototype);
+Ajax.Event.prototype = Object.create(CustomEvent.prototype);
 Ajax.Event.prototype.constructor = Ajax.Event;
 
 /** @constant {String} Generic load event type. */
