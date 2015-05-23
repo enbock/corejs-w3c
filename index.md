@@ -36,3 +36,16 @@ As language style and way to inheritance objects will be use the ECMAScript 5
 
 # References
 * [MDN Web API Interfaces](https://developer.mozilla.org/en-US/docs/Web/API)
+
+# Development
+## Event classes
+In design of the event classes I come to the point to think about, how I will
+organise the event. The `Event` has the 
+[`detail`](https://developer.mozilla.org/en-US/docs/Web/API/Event/detail)
+property which can be passed via the `eventInit` parameter of the `Event`
+constructor. In that reason is it normalize not necessary to create extended
+event `CustomEvent` classes.
+To organize the `typeArg`, the event types/names, I will add event _constants_
+in the global `Event` class object. If that later on will not fit, I need to
+move the _constants_ into the target or source classes or have to do a kind of
+_interface_ to collect the event types.
