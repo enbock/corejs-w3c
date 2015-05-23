@@ -10,10 +10,10 @@
  */
 describe("Event", function () {	
 	it("#constructor", function () {
-		var testObject = new CoreJs.Event(CoreJs.Event.LOAD, "Detail");
-		expect(testObject.type).is.equal(CoreJs.Event.LOAD);
+		var testObject = new CoreJs.Event("testEvent", "Detail");
+		expect(testObject.type).is.equal("testEvent");
 		expect(testObject.detail).is.equal("Detail");
-		testObject = new CoreJs.Event(CoreJs.Event.LOAD);
+		testObject = new CoreJs.Event("testEvent");
 		expect(testObject.detail).to.be.instanceOf(Object);
 	});
 });
