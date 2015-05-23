@@ -46,10 +46,11 @@ describe("DOMEventListener", function () {
 	
 	describe("#dispatchEvent", function () {
 		it("should call DOM EventTarget::dispatchEvent", function () {
+			var event = new CustomEvent('testEvent');
 			domMock.expects("dispatchEvent")
 				.once()
-				.withExactArgs(1);
-			testObject.dispatchEvent(1);
+				.withExactArgs(event);
+			testObject.dispatchEvent(event);
 			domMock.verify();
 		});
 	});
