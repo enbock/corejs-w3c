@@ -47,7 +47,4 @@ organise the event. The `Event` has the
 property which can be passed via the `eventInit` parameter of the `Event`
 constructor. In that reason is it normalize not necessary to create extended
 event `CustomEvent` classes.
-To organize the `typeArg`, the event types/names, I will add event _constants_
-in the global `Event` class object. If that later on will not fit, I need to
-move the _constants_ into the target or source classes or have to do a kind of
-_interface_ to collect the event types.
+The same seem like was 
