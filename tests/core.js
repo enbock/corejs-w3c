@@ -81,7 +81,7 @@ describe("Ajax", function () {
 	var documentMock, eventMock, eventTarget;
 	
 	beforeEach(function () {
-		eventTarget = new EventTarget();
+		eventTarget = new CustomEvent();
 		eventMock = sinon.mock(eventTarget);
 		documentMock = sinon.mock(document);
 		documentMock.expects("createElement").returns(eventTarget);
