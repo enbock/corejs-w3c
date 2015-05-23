@@ -8,7 +8,7 @@
 /**
  * Base event functionality.
  */
-describe("Event", function () {	
+describe("Event", function () {
 	it("#constructor", function () {
 		var testObject = new CoreJs.Event("testEvent", "Detail");
 		expect(testObject.type).is.equal("testEvent");
@@ -26,11 +26,19 @@ describe("Event.Listener {DOMEventListener}", function () {
 	var documentMock;
 	var domMock;
 	var eventTarget;
+	var sandbox;
+	var fakeDocument = {
+		createElement: function () { }
+	};
 
 	beforeEach(function () {
-		eventTarget = new CustomEvent("testEvent");
-		domMock = sinon.mock(eventTarget);
-		documentMock = sinon.mock(document);
+		sandbox = sinon.sandbox.create();
+		CoreJs.DOMEventListener.document = fakeDocument;
+	
+		eventTarget = new EventTarget();
+		console.log(eventTarget);
+		domMock = sandbox.mock(eventTarget);
+		documentMock = sandbox.mock(fakeDocument);
 		documentMock.expects("createElement")
 			.once().withExactArgs('xml').returns(eventTarget);
 		testObject = new CoreJs.Event.Listener();
@@ -38,7 +46,7 @@ describe("Event.Listener {DOMEventListener}", function () {
 
 	afterEach(function () {
 		documentMock.verify();
-		documentMock.restore();
+		sandbox.restore();
 	});
 
 	describe("#addEventListener", function () {
@@ -76,14 +84,21 @@ describe("Event.Listener {DOMEventListener}", function () {
  * AJAX
  */
 describe("Ajax", function () {
-	CoreJs.Ajax.XHRSystem = sinon.FakeXMLHttpRequest;
 	var testObject;
 	var documentMock, eventMock, eventTarget;
-	
+	var sandbox;
+	var fakeDocument = {
+		createElement: function () { }
+	};
+
 	beforeEach(function () {
-		eventTarget = new CustomEvent("test");
-		eventMock = sinon.mock(eventTarget);
-		documentMock = sinon.mock(document);
+		sandbox = sinon.sandbox.create();
+		CoreJs.Ajax.XHRSystem = sinon.FakeXMLHttpRequest;
+		CoreJs.DOMEventListener.document = fakeDocument;
+		
+		eventTarget = new EventTarget();
+		eventMock = sandbox.mock(eventTarget);
+		documentMock = sandbox.mock(fakeDocument);
 		documentMock.expects("createElement").returns(eventTarget);
 			
 		testObject = new CoreJs.Ajax(
@@ -91,20 +106,19 @@ describe("Ajax", function () {
 			, 'http://itbock.de'
 			, {Hello:"World"}
 		);
-		
 	});
-	
+
 	afterEach(function () {
-		documentMock.restore();
+		sandbox.restore();
 	});
-	
+
 	it("#constructor", function () {
 		expect(testObject._request)
 			.to.be.an.instanceOf(sinon.FakeXMLHttpRequest);
 	});
-	
+
 	describe("#load", function () {
-		it("should open the connection", function() {
+		it("should open the connection", function () {
 			var requestMock = sinon.mock(testObject._request);
 			requestMock.expects("setRequestHeader")
 				.once()
@@ -114,12 +128,12 @@ describe("Ajax", function () {
 				.withExactArgs("post", 'http://itbock.de', true);
 			requestMock.expects("send")
 				.once()
-				.withExactArgs({Hello:"World"});
+				.withExactArgs({ Hello: "World" });
 			testObject.load();
 			requestMock.verify();
 			requestMock.restore();
 		});
-		
+
 		it("should trigger the load event", function () {
 			var spy = eventMock.expects("dispatchEvent").once();
 			testObject._request.response = 1;
@@ -128,13 +142,13 @@ describe("Ajax", function () {
 			testObject._request.responseURL = 4;
 			testObject._request.responseXML = 5;
 			testObject._request.status = 6;
-			
+
 			testObject._request.onload({
 				lengthComputable: true
 				, loaded: 100
 				, total: 100
 			});
-			
+
 			expect(spy.lastCall.args).to.have.length(1);
 			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CustomEvent);
 			expect(spy.lastCall.args[0].type)
@@ -161,7 +175,7 @@ describe("Ajax", function () {
 			expect(spy.lastCall.args[0].detail.total).is.equal(100);
 			eventMock.verify();
 		});
-		
+
 		it("should trigger the progress event", function () {
 			var spy = eventMock.expects("dispatchEvent").once();
 			var event = {
@@ -169,9 +183,9 @@ describe("Ajax", function () {
 				, loaded: 10
 				, total: 100
 			};
-			
+
 			testObject._request.onprogress(event);
-			
+
 			expect(spy.lastCall.args).to.have.length(1);
 			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CustomEvent);
 			expect(spy.lastCall.args[0].type)

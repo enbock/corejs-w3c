@@ -64,11 +64,14 @@ function DOMEventListener() {
 	 * @type {HTMLElement}
 	 * @default
 	 */
-	this._dom = document.createElement('xml');
+	this._dom = DOMEventListener.document.createElement('xml');
 }
 DOMEventListener.prototype = Object.create(EventTarget.prototype);
 module.exports.DOMEventListener =
 DOMEventListener.prototype.constructor = DOMEventListener;
+
+DOMEventListener.document = document;
+
 /**
  * @mixin
  */
