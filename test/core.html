@@ -25,7 +25,7 @@ permalink: /test/core.html
 r = new Ajax("get", "http://enbock.github.io/corejs-w3c/");
 r.addEventListener(Ajax.Event.LOAD, h);
 r.load();
-return "See now in the console output.";</textarea><br>
+return r + " is loading.";</textarea><br>
 <button onclick="runCode(this);">Run</button><br>
 <textarea cols="80" rows="3" id="result" readonly></textarea><br>
 <i>See also text in console.</i>
