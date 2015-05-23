@@ -4,7 +4,7 @@
 /**
  * Adapting idea of nodejs.
  */
- if (module === undefined) {
+ try { module !== undefined; } catch (e) {
 	// import module into current context(window)
 	CoreJs = module = {exports: {}};
  }
