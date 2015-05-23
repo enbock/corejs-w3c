@@ -6,8 +6,17 @@ permalink: /test/core.html
 
 <style>
 	#mocha * {
-		font-family: Verdana;
-		border: 1px solid rgb(169, 169, 169);
+		font-family: Verdana !important;
+		font-size: 1em;
+	}
+	#mocha h1 {
+		font-size: 1.5em;
+	}
+	#mocha h2 {
+		font-size: 1.3em;
+	}
+	#mocha h3 {
+		font-size: 1.1em;
 	}
 	#mocha-stats {
 		position: absolute;
@@ -16,6 +25,36 @@ permalink: /test/core.html
 		font-size: 12px;
 		margin: 0;
 		z-index: 1;
+	}
+	
+	#mocha-stats .progress {
+		float: right;
+		padding-top: 0;
+	}
+	
+	#mocha-stats em {
+		color: black;
+	}
+	
+	#mocha-stats a {
+		text-decoration: none;
+		color: inherit;
+	}
+	
+	#mocha-stats a:hover {
+		border-bottom: 1px solid #eee;
+	}
+	
+	#mocha-stats li {
+		display: inline-block;
+		margin: 0 5px;
+		list-style: none;
+		padding-top: 11px;
+	}
+	
+	#mocha-stats canvas {
+		width: 40px;
+		height: 40px;
 	}
 </style>
 
