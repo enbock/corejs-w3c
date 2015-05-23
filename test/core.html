@@ -6,17 +6,16 @@ permalink: /test/core.html
 
 <style>
 	#mocha * {
-		font-family: Verdana !important;
-		font-size: 1em;
+		font-size: 0.8em;
 	}
 	#mocha h1 {
-		font-size: 1.5em;
-	}
-	#mocha h2 {
 		font-size: 1.3em;
 	}
-	#mocha h3 {
+	#mocha h2 {
 		font-size: 1.1em;
+	}
+	#mocha h3 {
+		font-size: 0.9em;
 	}
 	#mocha-stats {
 		position: absolute;
@@ -55,6 +54,29 @@ permalink: /test/core.html
 	#mocha-stats canvas {
 		width: 40px;
 		height: 40px;
+	}
+	
+	#mocha .test.pending:hover h2::after {
+		content: '(pending)';
+	}
+	
+	#mocha .test.pass.medium .duration {
+		background: #c09853;
+	}
+	
+	#mocha .test.pass.slow .duration {
+		background: #b94a48;
+	}
+	
+	#mocha ul {
+		list-style: none;
+	}
+	#mocha .test.pass .duration {
+		font-size: 0.8em;
+		margin-left: 5px;
+		padding: 2px 5px;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
+		border-radius: 5px;
 	}
 </style>
 
