@@ -6,7 +6,7 @@ permalink: /test/core.html
 
 <style>
 	#mocha h1, h2, h3 {
-		font-family: Verdana, sans-serif;
+		font-family: Verdana, sans-serif !important;
 	}
 	#mocha h1 {
 		font-size: 1.3em;
@@ -14,8 +14,15 @@ permalink: /test/core.html
 	#mocha h2 {
 		font-size: 1.1em;
 	}
+	#mocha h2:before {
+		font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+		padding-right: 0.3em;
+		margin-left: -1.5em;
+		content: "//";
+		color: #9ddcff;
+	}
 	#mocha h3 {
-		font-size: 0.9em;
+		font-size: 0.8em;
 	}
 	#mocha-stats {
 		position: absolute;
@@ -72,7 +79,8 @@ permalink: /test/core.html
 		list-style: none;
 	}
 	#mocha .test.pass .duration {
-		font-size: 0.8em;
+		font-size: 0.7em;
+		font-weight: normal;
 		margin-left: 5px;
 		padding: 2px 5px;
 		box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
