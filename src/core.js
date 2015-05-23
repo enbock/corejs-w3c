@@ -236,7 +236,7 @@ Ajax.XHRSystem = XMLHttpRequest;
  * Execute the opening process.
  */
 Ajax.prototype.load = function () {
-	this._request.setRequestHeader("Content-Type", this.contentType);
 	this._request.open(this._method, this._url, true);
+	this._request.setRequestHeader("Content-Type", this.contentType);
 	this._request.send(this._sendData);
 };
