@@ -113,12 +113,13 @@ permalink: /test/core.html
 <script src="http://chaijs.com/chai.js"></script>
 <script src="//rawgit.com/mochajs/mocha/master/mocha.js"></script>
 <script src="http://sinonjs.org/releases/sinon.js"></script>
+<script src="//raw.githubusercontent.com/alex-seville/blanket/master/dist/qunit/blanket.min.js"></script>
 <script>mocha.setup('bdd');</script>
 <script>	
 expect = chai.expect;
 should = chai.should();
 </script>
-<script src="//rawgit.com/enbock/corejs-w3c/master/tests/core.js"></script>
+<script src="//rawgit.com/enbock/corejs-w3c/master/tests/core.js" data-cover></script>
 
 <h1>Unit Tests</h1>
 See the results also on <a href="https://circleci.com/gh/enbock/corejs-w3c/tree/master">CircleCI</a>.
