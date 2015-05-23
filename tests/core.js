@@ -38,7 +38,6 @@ describe("Event.Listener {DOMEventListener}", function () {
 		CoreJs.DOMEventListener.document = fakeDocument;
 	
 		eventTarget = new EventTarget();
-		console.log(eventTarget);
 		domMock = sandbox.mock(eventTarget);
 		documentMock = sandbox.mock(fakeDocument);
 		documentMock.expects("createElement")
@@ -198,7 +197,6 @@ describe("Ajax", function () {
 			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CustomEvent);
 			expect(spy.lastCall.args[0].type)
 				.to.be.equal(CoreJs.Ajax.Event.PROGRESS);
-			console.log(spy.lastCall.args[0].detail);
 			expect(spy.lastCall.args[0].detail.lengthComputable).is.true;
 			expect(spy.lastCall.args[0].detail.loaded).is.equal(10);
 			expect(spy.lastCall.args[0].detail.total).is.equal(100);
