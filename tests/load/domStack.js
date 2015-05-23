@@ -7,3 +7,5 @@ global.document = {
 };
 global.EventTarget = function () {};
 global.EventTarget.prototype.addEventListener = function() {};
+global.EventTarget.prototype.removeEventListener = function() {};
+global.EventTarget.prototype.dispatchEvent = function() {};
