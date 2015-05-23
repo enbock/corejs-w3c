@@ -38,7 +38,7 @@ As language style and way to inheritance objects will be use the ECMAScript 5
 * [MDN Web API Interfaces](https://developer.mozilla.org/en-US/docs/Web/API)
 
 # Development
-[Test page](./test/core.html)
+* [Core Test page](test/core.html)
 
 ## Event classes
 In design of the event classes I come to the point to think about, how I will
@@ -47,4 +47,8 @@ organise the event. The `Event` has the
 property which can be passed via the `eventInit` parameter of the `Event`
 constructor. In that reason is it normalize not necessary to create extended
 event `CustomEvent` classes.
-The same seem like was 
+The same seems like, was also the idea of the W3C. The `CustomEvent` is not
+extendable because the `CustomEvent.call()` is blocked with an exception.
+So I have in real only one `Event` class possible. But I created some 
+constructors to have kind of `Event` classes as contant holder ie. 
+[`new Ajax.Event(Ajax.Event.LOAD)`](test/core.html).
