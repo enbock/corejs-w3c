@@ -4,11 +4,11 @@
 /**
  * Adapting idea of nodejs.
  */
- try { module !== undefined; } catch (e) {
+try { module !== undefined; } catch (e) {
 	// import module into current context(window)
 	module = {};
 	CoreJs = module.exports = {};
- }
+}
 
 /**
  * Main collection of class which are minium require to create the core system.
@@ -23,8 +23,7 @@
  * @constructor
  * @see https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler
  */
-function CoreEventHandler()
-{
+function CoreEventHandler() {
 	Object.call(this);
 }
 CoreEventHandler.prototype = Object.create(Object.prototype);
@@ -34,8 +33,15 @@ CoreEventHandler.prototype.constructor = CoreEventHandler;
  * 
  * @param {Event}
  */
-CoreEventHandler.prototype.handleEvent = function(event) {
+CoreEventHandler.prototype.handleEvent = function (event) {
 	console.log("Event.Handler::handleEvent:", event);
+};
+
+/**
+ * String representation.
+ */
+CoreEventHandler.prototype.toString = function () {
+	return "[Event.Handler]";
 };
 
 /**
@@ -61,13 +67,13 @@ function DOMEventListener() {
 	this._dom = document.createElement('xml');
 }
 DOMEventListener.prototype = Object.create(EventTarget.prototype);
-module.exports.DOMEventListener = 
+module.exports.DOMEventListener =
 DOMEventListener.prototype.constructor = DOMEventListener;
 /**
  * @mixin
  */
-DOMEventListener.prototype.handleEvent = 
-	Object.create(CoreEventHandler.prototype).handleEvent;
+DOMEventListener.prototype.handleEvent =
+Object.create(CoreEventHandler.prototype).handleEvent;
 
 /**
  * The EventTarget.addEventListener() method registers the specified listener
@@ -112,13 +118,20 @@ function (event) {
 };
 
 /**
+ * String representation.
+ */
+DOMEventListener.prototype.toString = function () {
+	return "[DOMEventListener]";
+};
+
+/**
  * CoreJS events.
  * 
  * @constructor
  * @param {String} typeArg - Is a String representing the name of the event.
  * @param {(Object|String|Number)} [detail] - Data to transport over the event.
  */
-function CoreEvent(typeArg, detail) { 
+function CoreEvent(typeArg, detail) {
 	if (detail == undefined) {
 		detail = {};
 	}
@@ -130,7 +143,7 @@ function CoreEvent(typeArg, detail) {
 	 * In reason of that the browser did not allow to extend CustomEvent in
 	 * common way, we use our event class only as constant holder. 
 	 */
-	return new CustomEvent(typeArg, {detail: detail});
+	return new CustomEvent(typeArg, { detail: detail });
 }
 CoreEvent.prototype = Object.create(CustomEvent.prototype);
 module.exports.Event = CoreEvent.prototype.constructor = CoreEvent;
@@ -138,6 +151,13 @@ module.exports.Event = CoreEvent.prototype.constructor = CoreEvent;
 CoreEvent.Listener = DOMEventListener;
 /** @constant {EventHandler} Class for event register endpoints. */
 CoreEvent.Handler = CoreEventHandler;
+
+/**
+ * String representation.
+ */
+CoreEvent.prototype.toString = function () {
+	return "[Event]";
+};
 
 /**
  * Asynchronous JavaScript and XML.
@@ -214,7 +234,7 @@ function Ajax(method, url, sendData) {
 				loaded: event.loaded,
 				total: event.total
 			})
-		);
+			);
 	};
 	
 	/**
@@ -228,7 +248,7 @@ function Ajax(method, url, sendData) {
 				loaded: event.loaded,
 				total: event.total
 			})
-		);
+			);
 	};
 }
 Ajax.prototype = Object.create(DOMEventListener.prototype);
@@ -241,7 +261,7 @@ module.exports.Ajax = Ajax.prototype.constructor = Ajax;
  * @param {String} typeArg - Is a String representing the name of the event.
  * @param {(Object|String|Number)} [detail] - Data to transport over the event.
  */
-Ajax.Event = function(typeArg, detail) { 
+Ajax.Event = function (typeArg, detail) {
 	var event = CoreEvent.call(this, typeArg, detail);
 	return event;
 };
@@ -262,4 +282,11 @@ Ajax.prototype.load = function () {
 	this._request.open(this._method, this._url, true);
 	this._request.setRequestHeader("Content-Type", this.contentType);
 	this._request.send(this._sendData);
+};
+
+/**
+ * String representation.
+ */
+Ajax.prototype.toString = function () {
+	return "[Ajax " + this._method + " " + this._url + "]";
 };
