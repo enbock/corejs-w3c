@@ -211,8 +211,19 @@ function Ajax(method, url, sendData) {
 Ajax.prototype = Object.create(DOMEventListener.prototype);
 module.exports.Ajax = Ajax.prototype.constructor = Ajax;
 
-/** @default Event for ajax calls. */
-Ajax.Event = CoreEvent;
+/**
+ * AJAX events.
+ * 
+ * @constructor
+ * @param {String} typeArg - Is a String representing the name of the event.
+ * @param {(Object|String|Number)} [detail] - Data to transport over the event.
+ */
+Ajax.Event = function(typeArg, detail) { 
+	CoreEvent.call(this, typeArg, detail);
+};
+Ajax.Event.prototype = Object.create(CoreEvent.prototype);
+Ajax.Event.prototype.constructor = Ajax.Event;
+
 /** @constant {String} Generic load event type. */
 Ajax.Event.LOAD = "Ajax.Load";
 /** @constant {String} Generic progress event type. */
