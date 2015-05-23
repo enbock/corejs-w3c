@@ -123,8 +123,8 @@ should = chai.should();
 
 <h1>Unit Tests</h1>
 See the results also on <a href="https://circleci.com/gh/enbock/corejs-w3c/tree/master">CircleCI</a>.
-<div id="mocha"></div>	
-<h1>Experiments</h1>
+<div id="mocha"></div>
+<div id="blanket-main" style="width:150%"></div>	
 <script>
 function EventTarget()
 {
@@ -136,9 +136,9 @@ EventTarget.prototype.dispatchEvent = function () { };
 
 mocha.run();
 </script>
-<div id="blanket-main"></div>
-
-
+	
+		
+<h1>Experiments</h1>
 <script type="text/javascript">
 	function runCode(event) {
 		var code = document.getElementById("code").value;
@@ -157,7 +157,7 @@ mocha.run();
 	}
 </script>
 
-<textarea cols="80" rows="10" id="code">h = new CoreEvent.Handler();
+<textarea cols="74" rows="10" id="code">h = new CoreEvent.Handler();
 r = new Ajax("get", "http://enbock.github.io/corejs-w3c/");
 r.addEventListener(Ajax.Event.LOAD, h);
 r.load();
