@@ -3,17 +3,17 @@ layout: default
 title: CoreJS-W3C Test Page
 permalink: /test/core.html
 ---
-
-<script src="http://rawgit.com/enbock/corejs-w3c/master/src/core.js" type="text/javascript"></script>
+<link rel="stylesheet" href="//rawgit.com/mochajs/mocha/master/mocha.css">
+<script src="//rawgit.com/enbock/corejs-w3c/master/src/core.js" type="text/javascript"></script>
 <script src="http://chaijs.com/chai.js"></script>
-<script src="http://rawgit.com/mochajs/mocha/master/mocha.js"></script>
+<script src="//rawgit.com/mochajs/mocha/master/mocha.js"></script>
 <script src="http://sinonjs.org/releases/sinon.js"></script>
 <script>mocha.setup('bdd');</script>
 <script>	
 expect = chai.expect;
 should = chai.should();
 </script>
-<script src="http://rawgit.com/enbock/corejs-w3c/master/tests/core.js"></script>
+<script src="//rawgit.com/enbock/corejs-w3c/master/tests/core.js"></script>
 	
 <div id="mocha"></div>	
 <script>
