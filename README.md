@@ -33,3 +33,7 @@ As language style and way to inheritance objects will be use the ECMAScript 5
 
 # References
 * [MDN Web API Interfaces](https://developer.mozilla.org/en-US/docs/Web/API)
+
+# Continued documentation
+The complete documentation you can find at the 
+[Project Web Page](http://enbock.github.io/corejs-w3c/).
