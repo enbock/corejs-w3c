@@ -28,7 +28,7 @@ describe("Event.Listener {DOMEventListener}", function () {
 	var eventTarget;
 
 	beforeEach(function () {
-		eventTarget = new EventTarget();
+		eventTarget = new CustomEvent();
 		domMock = sinon.mock(eventTarget);
 		documentMock = sinon.mock(document);
 		documentMock.expects("createElement")
