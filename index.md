@@ -38,6 +38,7 @@ As language style and way to inheritance objects will be use the ECMAScript 5
 * [MDN Web API Interfaces](https://developer.mozilla.org/en-US/docs/Web/API)
 
 # Development
+[Test page](test/core.html)
 
 ## Event classes
 In design of the event classes I come to the point to think about, how I will
