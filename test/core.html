@@ -142,11 +142,11 @@ mocha.run();
 		
 		try {
 			console.log(
-				document.getElementById("result").value = 
+				document.getElementById("result").firstChild.nodeValue = 
 					new Function(code).call(window)
 			);
 		} catch (e) {
-			document.getElementById("result").value = new String(e);
+			document.getElementById("result").firstChild.nodeValue = new String(e);
 			console.log(e);
 			throw e;
 		}
@@ -159,5 +159,5 @@ r.addEventListener(Ajax.Event.LOAD, h);
 r.load();
 return r + " is loading.";</textarea><br>
 <button onclick="runCode(this);">Run</button><br>
-<textarea cols="80" rows="3" id="result" readonly></textarea><br>
+<pre cols="80" rows="3" id="result" readonly>.</pre><br>
 <i>See also text in console.</i>
