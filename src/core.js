@@ -209,7 +209,10 @@ function Ajax(method, url, sendData) {
 				responseType: self._request.responseType,
 				responseURL: self._request.responseURL,
 				responseXML: self._request.responseXML,
-				status: self._request.status
+				status: self._request.status,
+				lengthComputable: event.lengthComputable,
+				loaded: event.loaded,
+				total: event.total
 			})
 		);
 	};

@@ -129,7 +129,11 @@ describe("Ajax", function () {
 			testObject._request.responseXML = 5;
 			testObject._request.status = 6;
 			
-			testObject._request.onload("not used");
+			testObject._request.onload({
+				lengthComputable: true
+				, loaded: 100
+				, total: 100
+			});
 			
 			expect(spy.lastCall.args).to.have.length(1);
 			expect(spy.lastCall.args[0]).to.be.an.instanceOf(CustomEvent);
@@ -142,6 +146,9 @@ describe("Ajax", function () {
 				, "responseURL"
 				, "responseXML"
 				, "status"
+				, "lengthComputable"
+				, "loaded"
+				, "total"
 			]);
 			expect(spy.lastCall.args[0].detail.response).to.be.equal(1);
 			expect(spy.lastCall.args[0].detail.responseText).to.be.equal(2);
@@ -149,15 +156,18 @@ describe("Ajax", function () {
 			expect(spy.lastCall.args[0].detail.responseURL).to.be.equal(4);
 			expect(spy.lastCall.args[0].detail.responseXML).to.be.equal(5);
 			expect(spy.lastCall.args[0].detail.status).to.be.equal(6);
+			expect(spy.lastCall.args[0].detail.lengthComputable).is.true;
+			expect(spy.lastCall.args[0].detail.loaded).is.equal(100);
+			expect(spy.lastCall.args[0].detail.total).is.equal(100);
 			eventMock.verify();
 		});
 		
 		it("should trigger the progress event", function () {
 			var spy = eventMock.expects("dispatchEvent").once();
 			var event = {
-				lengthComputable: true,
-				loaded: 10,
-				total: 100
+				lengthComputable: true
+				, loaded: 10
+				, total: 100
 			};
 			
 			testObject._request.onprogress(event);
