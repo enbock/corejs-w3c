@@ -156,13 +156,6 @@ CoreEvent.Listener = DOMEventListener;
 CoreEvent.Handler = CoreEventHandler;
 
 /**
- * String representation.
- */
-CoreEvent.prototype.toString = function () {
-	return "[Event]";
-};
-
-/**
  * Asynchronous JavaScript and XML.
  * Wrapper to equalize and simplify the usage for AJAX calls.
  *

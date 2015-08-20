@@ -79,8 +79,34 @@ describe("Event.Listener {DOMEventListener}", function () {
 			domMock.verify();
 		});
 	});
+	
+	it("#toString", function() {
+		expect(String(testObject)).is.equal('[DOMEventListener]');
+	});
 });
 
+/**
+ * Core Handler
+ */
+describe("Event.Handler", function() {
+	var testObject;
+	it("#handleEvent", function() {
+		testObject = new CoreJs.Event.Handler();
+		testObject.handleEvent("The test event");
+	});
+	it("#toString", function() {
+		testObject = new CoreJs.Event.Handler();
+		expect(String(testObject)).is.equal('[Event.Handler]');
+	});
+});
+
+describe("Event.Listener", function() {
+	var testObject;
+	it("#toString", function() {
+		testObject = new CoreJs.Event.Listener();
+		expect(String(testObject)).is.equal('[DOMEventListener]');
+	});
+});
 
 /**
  * AJAX
@@ -122,6 +148,9 @@ describe("Ajax", function () {
 	it("#constructor", function () {
 		expect(testObject._request)
 			.to.be.an.instanceOf(sinon.FakeXMLHttpRequest);
+	});
+	it("#tostring", function () {
+		expect(String(testObject)).is.equal("[Ajax post http://itbock.de]");
 	});
 
 	describe("#load", function () {
