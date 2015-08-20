@@ -100,14 +100,6 @@ describe("Event.Handler", function() {
 	});
 });
 
-describe("Event.Listener", function() {
-	var testObject;
-	it("#toString", function() {
-		testObject = new CoreJs.Event.Listener();
-		expect(String(testObject)).is.equal('[DOMEventListener]');
-	});
-});
-
 /**
  * AJAX
  */
