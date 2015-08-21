@@ -6,6 +6,7 @@
  */
 try { module !== undefined; } catch (e) {
 	// import module into current context(window)
+	global = this; 
 	module = {};
 	CoreJs = module.exports = {};
 }
@@ -288,3 +289,198 @@ Ajax.prototype.load = function () {
 Ajax.prototype.toString = function () {
 	return "[Ajax " + this._method + " " + this._url + "]";
 };
+
+/**
+ * Isolation system.
+ * This namespace implementation allows an async loading of use() code.
+ * 
+ * Usage:
+ *     namespace('Test.Implementation', function() {
+ *         use('Test.Logger');
+ * 
+ *         var log = new Test.Logger(); // Use imported class
+ *   
+ *         log.debug("Create class...");
+ *         function UseIt() {};
+ *         UseIt.protoType = Object.create(Object.protoType);
+ *         this.UseIt = UseIt; // propagate to Test.Implementation.UseIt
+ *     });
+ * 
+ * @param {string}   fullQualifiedNameSpace The name space.
+ * @param {Function} contentCall            The action to by apply on context.
+ * 
+ * @signleton
+ */
+function namespace(fullQualifiedNameSpace, contentCall) {
+	var context = namespace.getContext(fullQualifiedNameSpace);
+	
+	try {
+		contentCall.call(context);
+	} catch (error) {
+		if (error instanceof ReferenceError) {
+			// some dependencies not loaded yet
+			namespace._queue.push(
+				{ns: fullQualifiedNameSpace, call: contentCall}
+			);
+		} else {
+			throw error;
+		}
+	}
+}
+ 
+/**
+ * Load handler.
+ * Invoked by use-loading and repeat failed content calls.
+ */
+namespace.handleEvent = function() {
+	var queue = namespace._queue
+	, i
+	, entry
+	;
+	namespace._queue = [];
+	for(i in queue) {
+		entry = queue[i];
+		namespace(entry.ns, entry.call);
+	}  
+}
+namespace._queue = [];
+ 
+/**
+ * Get the context for a namespace.
+ * 
+ * @param {string}   fullQualifiedNameSpace The name space.
+ * 
+ * @return {Function}
+ */
+namespace.getContext = function(fullQualifiedNameSpace) {
+	var context = use.context
+		, domains = fullQualifiedNameSpace.split(use.classPathDelimiter)
+		, domain
+		, i
+	;
+	for(i in domains) {
+		domain = domains[i];
+		if (!context.hasOwnProperty(domain)) {
+			context[domain] = new Function();
+		}
+		context = context.domain;
+	}
+	
+	return context;
+}
+
+/**
+ * Auto load system.
+ * 
+ * @signleton
+ */
+function use(fullQualifiedClassName) {
+	var container = use.getContainer(fullQualifiedClassName);
+	
+	if (container._loader === null) {
+		container._loader = new Ajax(
+			"get", container._path + use.fileExtension
+		);
+		container._loader.addEventListener(Ajax.Event.LOAD, function(event) {
+			// Load into script ram
+			container._class = new Function(event.detail.responseText);
+			// Import into context
+			var domains = fullQualifiedClassName.split(use.classPathDelimiter);
+			domains.pop();
+			container._class.call(
+				namespace.getContext(domains.join(use.classPathDelimiter))
+			);
+		});
+		container._loader.addEventListener(
+			Ajax.Event.LOAD, namespace.handleEvent
+		);
+		container._loader.load();
+	}
+}
+global.use = use;
+/**
+ * Context for program code.
+ */
+use.context  = global;
+/**
+ * The FQCN and FQNS delimiter character.
+ */
+use.classPathDelimiter = ".";
+/**
+ * File extension for class files.
+ */
+use.fileExtension      = ".js";
+/**
+ * The base path for not configured classes.
+ */
+use.basePath = ".";
+/**
+ * Path configs.
+ */
+use._psr4 = {};
+
+/**
+ * Set the path for a psr-4.
+ * 
+ * @param {string} psr4Name Namespace.
+ * @param {string} path     Path to namespace directory.
+ */
+use.psr4 = function(psr4Name, path) {
+	var container = use._psr4
+		, i
+		, domains
+		, domain
+		, name = psr4Name
+	;
+	
+	if (psr4Name.indexOf(use.classPathDelimiter) > 0) {
+		domains = psr4Name.split(use.classPathDelimiter);
+		name    = domains.pop();
+		for(i in domains) {
+			domain = domains[i];
+			if(!container.hasOwnProperty(domain)) {
+				container[domain] = {};
+			}
+			container = container[domain];
+		}
+	}
+	container[name] = {
+		_path: path
+		, _class: null
+		, _loader: null
+	};
+}
+
+/**
+ * Get container of class.
+ * 
+ * @param {string} fullQualifiedClassName The psr-4 class name.
+ */
+use.getContainer = function(fullQualifiedClassName) {
+	var container = use._psr4
+		, domains = fullQualifiedClassName.split(use.classPathDelimiter)
+		, domain
+		, i
+		, path = use.basePath
+	;
+	
+	for(i in domains) {
+		domain = domains[i];
+		if(container.hasOwnProperty(domain)) {
+			// find last point
+			if (container[domain].hasOwnProperty("_path")) {
+				path = container[domain]._path;
+			}
+		} else {
+			// extend the path
+			path += "/" + domain;
+			container[domain] = {
+				_path: path
+				, _class: null
+				, _loader: null
+			}
+		}
+		container = container[domain];
+	}
+	return container;
+}
