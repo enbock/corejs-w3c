@@ -141,33 +141,3 @@ EventTarget.prototype.dispatchEvent = function () { };
 
 mocha.run();
 </script>
-	
-		
-<h1>Experiments</h1>
-<script type="text/javascript">
-	function runCode(event) {
-		var code = document.getElementById("code").value;
-		console.log(code);
-		
-		try {
-			console.log(
-				document.getElementById("result").firstChild.nodeValue = 
-					new Function(code).call(window)
-			);
-		} catch (e) {
-			document.getElementById("result").firstChild.nodeValue = new String(e);
-			console.log(e);
-			throw e;
-		}
-	}
-</script>
-
-<textarea cols="74" rows="10" id="code">h = new CoreEvent.Handler();
-r = new Ajax("get", "http://enbock.github.io/corejs-w3c/");
-r.addEventListener(Ajax.Event.LOAD, h);
-r.load();
-return r + " is loading.";</textarea><br>
-<button onclick="runCode(this);">Run</button><br>
-<pre id="result" readonly>.</pre>
-<i>See also text in console.</i>
-<br>
