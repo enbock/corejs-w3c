@@ -13,3 +13,4 @@ global.assert = chai.assert;
 
 // run tests
 require("./core.js");
+require("./Bootstrap");
