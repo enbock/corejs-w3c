@@ -42,13 +42,14 @@ Now the main page:
 	</html>
 		
 The `core.js` file we load simple from the `npm install` created folder.    
-You see that here will loaded a `main.js` file. That is our main program:
+Also you can see that we loaded herea `main.js` file. That is our main
+ program:
 
 	/* global CoreJs, namespace, use */
 	namespace("HelloWorld", function() {
 		/**
-			* Main programm
-			*/
+		 * Main programm
+		 */
 		function Main() {
 			CoreJs.Event.Listener.call(this);
 		}
@@ -56,8 +57,8 @@ You see that here will loaded a `main.js` file. That is our main program:
 		this.Main = Main.prototype.constructor = Main;
 		
 		/**
-			* Program starter
-			*/
+		 * Program starter
+		 */
 		Main.prototype.handleEvent = function(event) {
 			console.log("Event:", event);
 					
@@ -74,20 +75,22 @@ You see that here will loaded a `main.js` file. That is our main program:
 		window.addEventListener("load", this.app);
 	});
 
+That's it.
+
 ## How does it work?
 
 	namespace("HelloWorld", function() {});
 		
-*`namespace`* create a now context object inside of the global context.
-Normalize is that the `windows` object of the browser.    
-You can change it with:
+*`namespace`* create a new context object inside of the global context.
+The global context is normalize the `window` object of the browser.    
+You can change it, if needed, with:
 
 	use.context = theNewGlobalContextFuntionObject;
 		
-The anonymous function contains the **loading code**. That means, that
-after the namespace creation that function will not be exists. To have
-the objects and classes stored in the namespace is it necessary to add
-them to the `this` object.
+The anonymous function of the `namespace` call contains the
+**loader code**. That means, that after the namespace creation this
+function will not anymore exists. To have the objects and classes stored in 
+the namespace, is it necessary to add them to the `this` object.
 
 	this.Main = Main.prototype.constructor = Main;
 			
@@ -104,15 +107,16 @@ Try to create it in the developer console:
 	// and a 2nd time Hello World.
 		
 _Note:_ More about event handling and usage in modern browsern you can
-find at 
+find more at 
 [MDN DOM Event Handlers](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers)
 and [MDN API EventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventListener).
  
 _Note2:_ For a good project style you should create your application
-object in a bootstrapper domain. Not like in this demo.
+object in a bootstrapper domain.
  
-Let run the [LiveDemo](examples/run/HelloWorld.html).
+Let it run ... the [LiveDemo](examples/run/HelloWorld.html) is here.
 
 This example was tested in:
-* Google Chrome Browser
+* Google Chrome
 * Microsoft Edge
+* Mozilla Firefox
