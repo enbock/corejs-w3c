@@ -298,11 +298,11 @@ describe("use", function() {
 		var eventTarget = new CoreJs.Ajax();
 		sinon.stub(eventTarget);
 		var factory     = sinon.mock();
-		var ns = sinon.stub(namespace, "getContext");
-		var context = new Function();
+		var contextStub = sinon.stub(namespace, "getContext");
+		var context     = new Function();
 		
 		factory.onCall(0).returns(eventTarget);
-		ns.onCall(0).returns(context);
+		contextStub.onCall(0).returns(context);
 		CoreJs.Ajax.factory = factory;
 		
 		eventTarget.addEventListener.callsArgWith(
@@ -322,7 +322,7 @@ describe("use", function() {
 		CoreJs.Ajax.factory.should.been.calledWithExactly(
 			"get", "http://itbock.de/Space.js"
 		)
-		ns.should.been.calledWithExactly("Use.Test");
+		contextStub.should.been.calledWithExactly("Use.Test");
 		context.should.include.keys("func");
 		context.func.should.equal("test");
 		eventTarget.addEventListener.should.been.calledWith("Ajax.Load");
@@ -333,5 +333,6 @@ describe("use", function() {
 		assert.equal(use._psr4.Use.Test.Space._path, "http://itbock.de/Space");
 		use._psr4.Use.Test.Space._class.should.be.instanceOf(Function);
 		use._psr4.Use.Test.Space._loader.should.equal(eventTarget);
+		contextStub.restore();
 	});
  });
