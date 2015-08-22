@@ -1,9 +1,10 @@
-/* global sinon */
+/* global sinon, assert */
 /* global expect */
 /* global CoreJs */
 /* global DOMEventListener */
 /* global EventTarget */
 /* global global, describe, beforeEach, afterEach, it */
+/* global namespace, use */
 
 /**
  * Base event functionality.
@@ -111,6 +112,7 @@ describe("Ajax", function () {
 		createElement: function () { }
 	};
 	var save = {};
+	var testData = {Hello:"World"};
 
 	beforeEach(function () {
 		sandbox = sinon.sandbox.create();
@@ -124,10 +126,10 @@ describe("Ajax", function () {
 		documentMock = sandbox.mock(fakeDocument);
 		documentMock.expects("createElement").returns(eventTarget);
 			
-		testObject = new CoreJs.Ajax(
+		testObject = CoreJs.Ajax.factory(
 			'post'
 			, 'http://itbock.de'
-			, {Hello:"World"}
+			, testData
 		);
 	});
 
@@ -136,11 +138,19 @@ describe("Ajax", function () {
 		CoreJs.Ajax.XHRSystem = save.xhr;
 		CoreJs.DOMEventListener.document = save.document;
 	});
+	
+	it("#factory", function() {
+		expect(testObject).to.be.an.instanceOf(CoreJs.Ajax);
+		expect(testObject._method).is.equal("post");
+		expect(testObject._url).is.equal("http://itbock.de");
+		expect(testObject._sendData).is.equal(testData);
+	});
 
 	it("#constructor", function () {
 		expect(testObject._request)
 			.to.be.an.instanceOf(sinon.FakeXMLHttpRequest);
 	});
+	
 	it("#tostring", function () {
 		expect(String(testObject)).is.equal("[Ajax post http://itbock.de]");
 	});
@@ -227,3 +237,101 @@ describe("Ajax", function () {
 		});
 	});
 });
+
+/**
+ * namespace tests
+ */
+describe("namespace", function() {
+	it("#add to queue", function() {
+		var mock    = sinon.mock();
+		var context = new Function();
+		
+		use.context = context;
+		mock.throws(new ReferenceError());
+			
+		namespace("Test", mock);
+		
+		mock.should.called;
+		assert.deepEqual(namespace._queue, [{ns:"Test", call:mock}]);
+		context.should.include.keys("Test");
+	});
+	
+	it("#pass through errors", function() {
+		var mock    = sinon.mock();
+		var context = new Function();
+		var error   = new Error("soso");
+		
+		use.context = context;
+		mock.throws(error);
+			
+		try {
+			namespace("Test2", mock);
+		} catch (e) {
+			e.should.equal(error);
+		}
+		
+		mock.should.called;
+		assert.deepEqual(namespace._queue, []);
+		context.should.include.keys("Test2");
+	});
+	
+	it("#handleEvent", function() {
+		var mock    = sinon.mock();
+		namespace._queue = [{ns:"Test", call:mock}];
+		
+		namespace.handleEvent();
+		
+		mock.should.called;
+	})
+	
+	afterEach(function() {
+		use.context      = new Function();
+		namespace._queue = [];
+	})
+});
+
+/**
+ * Auto loader tests
+ */
+describe("use", function() {
+	it("#load file", function() {
+		var eventTarget = new CoreJs.Ajax();
+		sinon.stub(eventTarget);
+		var factory     = sinon.mock();
+		var ns = sinon.stub(namespace, "getContext");
+		var context = new Function();
+		
+		factory.onCall(0).returns(eventTarget);
+		ns.onCall(0).returns(context);
+		CoreJs.Ajax.factory = factory;
+		
+		eventTarget.addEventListener.callsArgWith(
+			1, {detail: {responseText: "this.func = 'test';"}}
+		);
+		
+		use.psr4("Use.Test", "http://itbock.de");
+		use._psr4.should.include.keys("Use");
+		use._psr4.Use.should.include.keys("Test");
+		assert.deepEqual(
+			{_class: null, _loader: null, _path: "http://itbock.de"},
+			use._psr4.Use.Test
+		);
+		
+		use("Use.Test.Space");
+		
+		CoreJs.Ajax.factory.should.been.calledWithExactly(
+			"get", "http://itbock.de/Space.js"
+		)
+		ns.should.been.calledWithExactly("Use.Test");
+		context.should.include.keys("func");
+		context.func.should.equal("test");
+		eventTarget.addEventListener.should.been.calledWith("Ajax.Load");
+		eventTarget.addEventListener.should.been.calledWithExactly(
+			"Ajax.Load", namespace.handleEvent
+		);
+		use._psr4.Use.Test.should.include.keys("Space");
+		assert.equal(use._psr4.Use.Test.Space._path, "http://itbock.de/Space");
+		use._psr4.Use.Test.Space._class.should.be.instanceOf(Function);
+		use._psr4.Use.Test.Space._loader.should.equal(eventTarget);
+	});
+ });

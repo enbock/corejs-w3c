@@ -1,3 +1,5 @@
 node_modules
 runTest.cmd
 run.html
+Cmd.lnk
+tests/vendor

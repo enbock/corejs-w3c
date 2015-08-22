@@ -5,12 +5,7 @@
 /**
  * Adapting idea of nodejs.
  */
-try { module !== undefined; } catch (e) {
-	// import module into current context(window)
-	global = this; 
-	module = {};
-	CoreJs = module.exports = {};
-}
+try { module !== undefined; } catch (e) { global = this; module = {}; CoreJs = module.exports = {}; }
 
 /**
  * Main collection of class which are minium require to create the core system.
@@ -36,7 +31,6 @@ CoreEventHandler.prototype.constructor = CoreEventHandler;
  * @param {Event}
  */
 CoreEventHandler.prototype.handleEvent = function (event) {
-	console.log("Event.Handler::handleEvent:", event);
 };
 
 /**
@@ -118,7 +112,6 @@ function (event, listener, useCapture) {
  */
 DOMEventListener.prototype.dispatchEvent =
 function (event) {
-	console.log("Dispatch event:", event.type, event);
 	this._dom.dispatchEvent(event);
 };
 
@@ -274,6 +267,18 @@ Ajax.Event.PROGRESS = "Ajax.Progress";
 Ajax.XHRSystem = XMLHttpRequest;
 
 /**
+ * Factory of ajax objects.
+ *
+ * @constructor
+ * @param {String}          method   - Type of request (get, post, put, ...).
+ * @param {String}          url      - Request address.
+ * @param {(Object|String)} sendData - Data to send.
+ */
+Ajax.factory = function(method, url, sendData) {
+	return new Ajax(method, url, sendData);
+}
+
+/**
  * Execute the opening process.
  */
 Ajax.prototype.load = function () {
@@ -365,7 +370,7 @@ namespace.getContext = function(fullQualifiedNameSpace) {
 		if (!context.hasOwnProperty(domain)) {
 			context[domain] = new Function();
 		}
-		context = context.domain;
+		context = context[domain];
 	}
 	
 	return context;
@@ -380,7 +385,7 @@ function use(fullQualifiedClassName) {
 	var container = use.getContainer(fullQualifiedClassName);
 	
 	if (container._loader === null) {
-		container._loader = new Ajax(
+		container._loader = Ajax.factory(
 			"get", container._path + use.fileExtension
 		);
 		container._loader.addEventListener(Ajax.Event.LOAD, function(event) {
