@@ -112,12 +112,17 @@ permalink: /test/core.html
 <script src="vendor/chai/chai.js"></script>
 <script src="vendor/mocha/mocha.js"></script>
 <script src="vendor/sinon/sinon.js"></script>
-<script src="vendor/blanket/blanket.min.js" data-cover-adapter="vendor/blanket/adapters/mocha-blanket.js"></script>
-<script>mocha.setup('bdd');</script>
-<script>	
-expect = chai.expect;
-should = chai.should();
+<script src="vendor/sinon/sinon-chai.js"></script>
+<script 
+	src="vendor/blanket/blanket.min.js" data-cover-adapter="vendor/blanket/adapters/mocha-blanket.js"
+></script>
+<script>
+	mocha.setup('bdd');
+	should = chai.should();
+	expect = chai.expect;
+	assert = chai.assert;
 </script>
+
 <script src="//rawgit.com/enbock/corejs-w3c/master/src/core.js" data-cover></script>
 <script src="//rawgit.com/enbock/corejs-w3c/master/tests/core.js"></script>
 
