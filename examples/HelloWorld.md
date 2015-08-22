@@ -75,7 +75,9 @@ You see that here will loaded a `main.js` file. That is our main program:
 	});
 
 ## How does it work?
+
 		namespace("HelloWorld", function() {});
+		
 *`namespace`* create a now context object inside of the global context.
 Normalize is that the `windows` object of the browser.    
 You can change it with:
