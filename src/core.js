@@ -1,5 +1,6 @@
 /* global CoreJs */
 /* global EventTarget */
+/* global global */
 
 /**
  * Adapting idea of nodejs.
@@ -327,6 +328,7 @@ function namespace(fullQualifiedNameSpace, contentCall) {
 		}
 	}
 }
+global.namespace = namespace;
  
 /**
  * Load handler.
