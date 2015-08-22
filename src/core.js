@@ -323,7 +323,7 @@ function namespace(fullQualifiedNameSpace, contentCall) {
 	try {
 		contentCall.call(context);
 	} catch (error) {
-		if (error instanceof ReferenceError) {
+		if (error instanceof TypeError) {
 			// some dependencies not loaded yet
 			namespace._queue.push(
 				{ns: fullQualifiedNameSpace, call: contentCall}

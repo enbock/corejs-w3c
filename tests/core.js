@@ -247,7 +247,7 @@ describe("namespace", function() {
 		var context = new Function();
 		
 		use.context = context;
-		mock.throws(new ReferenceError());
+		mock.throws(new TypeError());
 			
 		namespace("Test", mock);
 		
