@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Example: Hello World
+title: Hello World Example
 permalink: /examples/HelloWorld.html
 ---
 
@@ -102,12 +102,14 @@ Try to create it in the developer console:
 		// and a 2nd time Hello World.
 		
 _Note:_ More about event handling and usage in modern browsern you can
- find at 
- [MDN DOM Event Handlers](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers)
- and [MDN API EventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventListener).
+find at 
+[MDN DOM Event Handlers](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers)
+and [MDN API EventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventListener).
  
- _Note2:_ For a good project style you should create your application
- object in a bootstrapper domain. Not like in this demo.
+_Note2:_ For a good project style you should create your application
+object in a bootstrapper domain. Not like in this demo.
+ 
+Let run the [LiveDemo](run/HelloWorld.html).
 
 This example was tested in:
 * Google Chrome Browser
