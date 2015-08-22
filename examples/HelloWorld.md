@@ -109,7 +109,7 @@ and [MDN API EventListener](https://developer.mozilla.org/en-US/docs/Web/API/Eve
 _Note2:_ For a good project style you should create your application
 object in a bootstrapper domain. Not like in this demo.
  
-Let run the [LiveDemo](run/HelloWorld.html).
+Let run the [LiveDemo](examples/run/HelloWorld.html).
 
 This example was tested in:
 * Google Chrome Browser
