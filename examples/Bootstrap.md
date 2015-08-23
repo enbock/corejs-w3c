@@ -60,7 +60,7 @@ Now in detail:
 The definition at which place is the **CoreJS-W3C** installed. It could
 also be an full qualified URL like:
 
-	use.psr4("CoreJs", "http://rawgit.com/enbock/corejs-w3c/master/src/core.js");
+	use.psr4("CoreJs", "http://rawgit.com/enbock/corejs-w3c/master/src");
 
 ## Configuration of the project's source
 
@@ -134,7 +134,9 @@ Why inside of the namespace?
 The [namespace](reference/core.html#function-namespacefullqualifiednamespace-contentcall)
 interact with the [use](reference/core.html#function-usefullqualifiedclassname)
 functionality. Only that combination allows to think in sychnronous loading.    
-In real catch the [TypeError](http://www.ecma-international.org/ecma-262/5.1/#sec-8.6.2) and wait for the
+In real catch the [TypeError](http://www.ecma-international.org/ecma-262/5.1/#sec-8.6.2)
+or the [RefernceError](http://www.ecma-international.org/ecma-262/5.1/#sec-8.6.2) 
+and wait for the
 [Ajax Load Event](reference/core.html#corejsajaxeventtype-detail). After the
 code file was loaded, executes the [namespace](reference/core.html#function-namespacefullqualifiednamespace-contentcall)
 the loading code(the 2nd parameter) again. Theoretical could call the

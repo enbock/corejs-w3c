@@ -212,7 +212,7 @@ Factory to create `CoreJs.Ajax` objects.
 * `url` [String](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.18) Request address.
 * `sendData` [Object](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2) ,[String](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.18) Data to send.
 
-### load
+### load()
 Execute the ajax request and start the asynchronous loading.
 
 ## CoreJs.Ajax.Event(type, detail)
@@ -281,7 +281,7 @@ to convert [PSR-4](http://www.php-fig.org/psr/psr-4/) definition into resource n
 The url [String](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.18)
 of the project's source location. 
 
-### (static) psr4(psr4Name, path)
+### (static) use.psr4(psr4Name, path)
 Configure the resouce root of a namespace.
 
 This is an equivalent to the [composer.js](https://github.com/composer/composer/blob/master/res/composer-schema.json)
