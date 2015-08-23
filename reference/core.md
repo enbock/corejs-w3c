@@ -6,10 +6,10 @@ permalink: /reference/core.html
 [<< Back](reference/)
 
 # TOC
-* [Intro](/reference/core.html#intro)
-* [Reference](/reference/core.html#reference)
-	* [CoreJs.Event.Handler](/reference/core.html#corejseventhandler)
-	* [CoreJs.Event.Listener](/reference/core.html#corejseventlistener)
+* [Intro](reference/core.html#intro)
+* [Reference](reference/core.html#reference)
+	* [CoreJs.Event.Handler](reference/core.html#corejseventhandler)
+	* [CoreJs.Event.Listener](reference/core.html#corejseventlistener)
 
 # Intro
 The core library contains the minimum of functionality, which is necessary
