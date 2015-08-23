@@ -40,7 +40,8 @@ As language style and way to inheritance objects will be use the ECMAScript 5
 
 # Development
 * [Core Test page](test/core.html)
-* [Example page](examples/HelloWorld.html)
+* [Hello World Example](examples/HelloWorld.html)
+* [Bootstrap Example](examples/Bootstrap.html)
 
 ## Event classes
 In design of the event classes I come to the point to think about, how I will
