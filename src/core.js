@@ -323,7 +323,11 @@ function namespace(fullQualifiedNameSpace, contentCall) {
 	try {
 		contentCall.call(context);
 	} catch (error) {
-		if (error instanceof TypeError) {
+		if (error instanceof ReferenceError || error instanceof TypeError) {
+			console.log(
+				"Catched error:", error, "and scheduled"
+				, fullQualifiedNameSpace, "to rerun after load."
+			);
 			// some dependencies not loaded yet
 			namespace._queue.push(
 				{ns: fullQualifiedNameSpace, call: contentCall}
