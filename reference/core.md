@@ -8,6 +8,7 @@ permalink: /reference/core.html
 # TOC
 * [Intro](reference/core.html#intro)
 * [Reference](reference/core.html#reference)
+	* [CoreJs.Event](reference/core.html#corejsevent)
 	* [CoreJs.Event.Handler](reference/core.html#corejseventhandler)
 	* [CoreJs.Event.Listener](reference/core.html#corejseventlistener)
 
@@ -82,6 +83,10 @@ The factory of [CustomEvent](https://dom.spec.whatwg.org/#interface-customevent)
 
 * `event` [String](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.18) The event type for which the user is registering.
 * `detail` [`Object`](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2) Custom data to transport.
+
+### Internal class name
+
+* `CoreEvent`
 
 ## CoreJs.Event.Handler
 
