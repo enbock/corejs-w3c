@@ -3,6 +3,8 @@ layout: default
 title: CoreJS-W3C Reference - core.js
 permalink: /reference/core.html
 ---
+[<< Back](reference/)
+
 # Intro
 The core library contains the minimum of functionality, which is necessary
 to enable the CoreJs functions.
