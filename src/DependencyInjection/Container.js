@@ -2,12 +2,12 @@
 namespace("CoreJs.DependencyInjection", function() {
 	
 	/**
-	* DI container.
-	*
-	* @constructor
-	*
-	* @param {Object} config Service config.
-	*/
+	 * DI container.
+	 *
+	 * @constructor
+	 *
+	 * @param {Object} config Service config.
+	 */
 	function Container(config) {
 		CoreJs.Event.Listener.call(this);
 	
@@ -18,12 +18,22 @@ namespace("CoreJs.DependencyInjection", function() {
 	this.Container = Container.prototype.constructor = Container;
 	
 	/**
-	* Create and get a service.
-	*
-	* @param {String} name The service name.
-	*
-	* @return {Object} The service object.
-	*/
+	 * Preload all the classes.
+	 */
+	Container.prototype.load = function() {
+		var i;
+		for(i in this.config.services) {
+			use(this.config.services[i].class);
+		}
+	}
+	
+	/**
+	 * Create and get a service.
+	 *
+	 * @param {String} name The service name.
+	 *
+ 	 * @return {Object} The service object.
+	 */
 	Container.prototype.get = function(name) {
 		var i;
 		
@@ -40,9 +50,15 @@ namespace("CoreJs.DependencyInjection", function() {
 			var argument = cfg.arguments[i];
 			if (
 				(typeof argument === "string" || argument instanceof String)
-				&& argument.indexOf("@") === 0
 			) {
-				cfg.arguments[i] = this.get(argument.replace("@",""));
+				if(argument.indexOf("@") === 0) {
+					cfg.arguments[i] = this.get(argument.replace("@", ""));
+				}
+				if(argument.indexOf("$") === 0) {
+					cfg.arguments[i] = (new Function(
+						"return this." + argument.replace("$", "") + ";"
+					)).call(use.context);
+				}
 			}
 		}
 	
@@ -64,11 +80,11 @@ namespace("CoreJs.DependencyInjection", function() {
 	};
 	
 	/**
-	* Set an external instance to container.
-	*
-	* @param {String} name     Name of service.
-	* @param {Object} instance External instance.
-	*/
+	 * Set an external instance to container.
+	 *
+	 * @param {String} name     Name of service.
+	 * @param {Object} instance External instance.
+	 */
 	Container.prototype.set = function(name, instance) {
 		this.services[name] = instance;
 	};

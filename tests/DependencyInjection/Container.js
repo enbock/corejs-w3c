@@ -94,8 +94,49 @@ describe("CoreJs.DependencyInjection.Container", function() {
         assert.equal(true, result.injected.theOther);
     });
 
-    it("set a service from outside", function() {
+    it("get a service with a global variable injection", function() {
+		context.gVar   = "hello global";
+        var testObject = new CoreJs.DependencyInjection.Container(
+            {
+                services: {
+                    "my_test": {
+                        "class": "TCoreJs.Test",
+                        "arguments": [
+                            "$gVar"
+                        ]
+                    }
+                }
+            }
+        );
 
+        var result = testObject.get("my_test");
+        assert.equal(
+            true, result instanceof context.TCoreJs.Test,
+            "Service has wrong instance type"
+        );
+        assert.equal("hello global", result.injected);
+    });
+
+    it("load classes", function() {
+        var testObject = new CoreJs.DependencyInjection.Container(
+			{
+				services: {
+					"my_test": {
+						"class": "TCoreJs.Test",
+					}
+				}
+			}
+		);
+		var orgUse = global.use;
+		global.use = sinon.stub();
+		
+        testObject.load();
+        
+		use.should.been.calledWithExactly("TCoreJs.Test")
+		global.use = orgUse;
+    });
+
+    it("set a service from outside", function() {
         var testObject = new CoreJs.DependencyInjection.Container({});
         var service = {external: "service"};
         testObject.set("external.service", service);
