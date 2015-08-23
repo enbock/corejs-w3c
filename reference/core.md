@@ -97,4 +97,4 @@ interface implementation of the browser
 ### Inheritance
 
 * [EventTarget](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget)
-* (mixin) [CoreJs.Event.Handler](#CoreJs.Event.Handler)
+* (mixin) [CoreJs.Event.Handler](reference/core.html#corejseventlistener)
