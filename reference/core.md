@@ -77,12 +77,17 @@ Alternativley is the CoreJS-W3C also standalone usable:
 # Reference
 
 ## CoreJs.Event(type, detail)
-The factory of [CustomEvent](https://dom.spec.whatwg.org/#interface-customevent)objects.
+The factory of [CustomEvent](https://dom.spec.whatwg.org/#interface-customevent)
+objects.
 
 *Parameters:*
 
 * `event` [String](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.18) The event type for which the user is registering.
-* `detail` [`Object`](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2) Custom data to transport.
+* `detail` [Object](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2) Custom data to transport.
+
+### Inheritance
+
+* [CustomEvent](https://dom.spec.whatwg.org/#interface-customevent)
 
 ### Internal class name
 
@@ -97,7 +102,7 @@ It contains only the structure for receiving events.
 
 ### Inheritance
 
-* [`Object`](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2)
+* [Object](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2)
 
 ### Internal class name
 
