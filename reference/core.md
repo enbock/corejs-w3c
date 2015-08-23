@@ -66,7 +66,9 @@ Alternativley is the CoreJS-W3C also standalone usable:
 
 	
 # Reference
+
 ## CoreJs.Event.Handler
+
 The implementation of the [DOM Level 2 EventListener](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener)
 interface.
 
@@ -77,10 +79,10 @@ It contains only the structure for receiving events.
 * [`Object`](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2)
 
 ### Internal class name
-
 * `CoreEventHandler`
 
 ### Functions
+
 #### handleEvent(event)
 *Parameters:*
 
@@ -97,4 +99,4 @@ interface implementation of the browser
 ### Inheritance
 
 * [EventTarget](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget)
-* (mixin) [CoreJs.Event.Handler](reference/core.html#corejseventlistener)
+* (mixin) [CoreJs.Event.Handler](reference/core.html#corejseventhandler)
