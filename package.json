@@ -1,7 +1,7 @@
 {
 	"name": "corejs-w3c",
-	"version": "0.1.0",
-	"description": "Cure library to use w3c functionality as they is.",
+	"version": "0.2.1",
+	"description": "Core Library for W3C Browser Frontside Applications.",
 	"author": "Endre Bock <dev@itbock.de>",
 	"main": "src/core.js",
 	"scripts": {
@@ -28,5 +28,5 @@
         "sinon": "*",
         "sinon-chai": "*"
 	},
-	"license": "MIT"
+	"license": "GPL3"
 }
