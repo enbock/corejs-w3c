@@ -75,6 +75,14 @@ Alternativley is the CoreJS-W3C also standalone usable:
 	
 # Reference
 
+## CoreJs.Event(type, detail)
+The factory of [CustomEvent](https://dom.spec.whatwg.org/#interface-customevent)objects.
+
+*Parameters:*
+
+* `event` [String](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.18) The event type for which the user is registering.
+* `detail` [`Object`](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2) Custom data to transport.
+
 ## CoreJs.Event.Handler
 
 The implementation of the [DOM Level 2 EventListener](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener)
@@ -87,6 +95,7 @@ It contains only the structure for receiving events.
 * [`Object`](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2)
 
 ### Internal class name
+
 * `CoreEventHandler`
 
 ### Functions
@@ -113,6 +122,9 @@ interface implementation of the browser
 
 * `document` [Document](http://www.w3.org/TR/DOM-Level-3-Core/core.html#i-Document) The standard document injection.
 
+### Internal class name
+
+* `DOMEventListener`
 
 ### Functions
 
@@ -129,7 +141,7 @@ This method allows the registration of event listeners on the event target.
 *Parameters:*
 
 * `event` [String](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.18) The event type for which the user is registering
-* `listener` [EventListener](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener)|[Function](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.24) The event observer.
+* `listener` [EventListener](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener),[Function](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.24) The event observer.
 * `useCapture` [optional] [Boolean](http://www.ecma-international.org/ecma-262/5.1/#sec-8.3) Enable or disable [event capturing](http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-flow-capture).
 
 See also [DOM Level 2](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget-addEventListener).
@@ -143,18 +155,19 @@ on the `Event.Listener` has no effect.
 *Parameters:*
 
 * `event` [String](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.18) The event type for which the user is registering
-* `listener` [EventListener](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener)|[Function](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.24) The event observer.
+* `listener` [EventListener](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener),[Function](http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.24) The event observer.
 * `useCapture` [optional] [Boolean](http://www.ecma-international.org/ecma-262/5.1/#sec-8.3) Enable or disable [event capturing](http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-flow-capture).
 
 See also [DOM Level 2](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget-removeEventListener).
 
 #### dispatchEvent(event)
-This method allows the dispatch of events into the `Event.Listener`.    
-The target of the event is the `Event.Listener` on which dispatchEvent is
-called.
+This method allows the dispatch of events into the `CoreJs.Event.Listener`.    
+The target of the event is the `CoreJs.Event.Listener` on which
+dispatchEvent is called.
 
 *Parameters:*
 
 * `event` [Event](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Event) The received event object.
 
 See also [DOM Level 2](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget-dispatchEvent).
+
