@@ -5,8 +5,8 @@ permalink: /reference/index.html
 ---
 
 # CoreJS-W3C References
-## Global Namespaces
 
+## Global Namespaces
 The CoreJS uses global namespace of the browser. By default will
 the project been loaded into:
 
