@@ -17,3 +17,4 @@ the project been loaded into:
 ## Refernce documentation of Core-JS
 
 * [core functionality](reference/core.html)
+* [CoreJs.Bootstrap.HeadCleaner](reference/HeadCleaner.html)

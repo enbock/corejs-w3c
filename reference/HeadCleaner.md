@@ -1,7 +1,7 @@
 ---
 layout: default
 title: CoreJS-W3C Reference - core.js
-permalink: /reference/core.html
+permalink: /reference/HeadCleaner.html
 ---
 [<< Back](reference/)
 
