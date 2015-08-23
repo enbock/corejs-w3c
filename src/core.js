@@ -416,7 +416,7 @@ use.classPathDelimiter = ".";
 /**
  * File extension for class files.
  */
-use.fileExtension      = ".js";
+use.fileExtension = ".js";
 /**
  * The base path for not configured classes.
  */

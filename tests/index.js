@@ -13,4 +13,6 @@ global.assert = chai.assert;
 
 // run tests
 require("./core.js");
+use.context = global;
 require("./Bootstrap");
+require("./DependencyInjection");
