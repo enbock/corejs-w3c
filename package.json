@@ -1,6 +1,6 @@
 {
 	"name": "corejs-w3c",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": "Core Library for W3C Browser Frontside Applications.",
 	"author": "Endre Bock <dev@itbock.de>",
 	"main": "src/core.js",
