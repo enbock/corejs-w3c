@@ -12,8 +12,8 @@ strict MVC pattern with follow elements:
 
 * Model: Backend objects for connection to external or internal data services
 * Bridge: Passive data structres
-* View: Front side object with "knows" the bound DOM part and translate user 
-* activities into program CustomEvents
+* View: Front side object with "known" and bound DOM part which translate user 
+activities into CustomEvents
 * Controller: Interact with view object via CustomEvent protocols and trigger 
 model object in same way (Translate View Events into Model Events and 
 backward). Connect logical activities between multiple view and model objects.
