@@ -30,7 +30,7 @@ precondition of a class. Also the container creates and unified the objects.
 	<parameter> := String of:
 		"@<FQCN>"            -> object will be created
 		"$<global variable>" -> import the variable 
-	                            (global function call works also)
+                                (global function call works also)
 		"<text>"             -> text will provide as it is 
 		
 ## Methodology
