@@ -22,7 +22,7 @@ the project been loaded into:
 
 ### Bootstrap & Program start
 
-* [CoreJs.Bootstrap.HeadCleaner](reference/BootStrap/HeadCleaner.html)
+* [CoreJs.Bootstrap.HeadCleaner](reference/Bootstrap/HeadCleaner.html)
 * [CoreJs.DependencyInjection.Container](reference/DependencyInjection/Container.html)
 
 ### Layout
