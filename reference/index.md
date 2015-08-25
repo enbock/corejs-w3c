@@ -16,5 +16,22 @@ the project been loaded into:
 
 ## Refernce documentation of Core-JS
 
+### Core
+
 * [core functionality](reference/core.html)
-* [CoreJs.Bootstrap.HeadCleaner](reference/HeadCleaner.html)
+
+### Bootstrap & Program start
+
+* [CoreJs.Bootstrap.HeadCleaner](reference/BootStrap/HeadCleaner.html)
+* [CoreJs.DependencyInjection.Container](reference/DependencyInjection/Container.html)
+
+### Layout
+
+* [CoreJs.Layout.StyleSheet.Formatter.FromCss](reference/Layout/StyleSheet/Formatter/FromCss.html)
+* [CoreJs.Layout.StyleSheet.Formatter.FromLess](reference/Layout/StyleSheet/Formatter/FromLess.html)
+
+### Resouce handling
+
+* [CoreJs.FileSystem.Loader.Resource](reference/FileSystem/Loader/Resource.html)
+* [CoreJs.FileSystem.Loader.Formatter.FromText](reference/FileSystem/Loade/Formatter/FromText)
+
