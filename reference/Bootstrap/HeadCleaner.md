@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CoreJS-W3C Reference - core.js
+title: CoreJS-W3C Reference - HeadCleaner
 permalink: /reference/Bootstrap/HeadCleaner.html
 ---
 [<< Back](reference/)
