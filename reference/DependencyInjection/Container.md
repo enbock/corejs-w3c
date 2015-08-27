@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CoreJS-W3C Reference - Container
+title: CoreJS-W3C Reference
 permalink: /reference/DependencyInjection/Container.html
 ---
 [<< Back](reference/)

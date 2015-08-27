@@ -32,6 +32,7 @@ the project been loaded into:
 
 ### Resouce handling
 
-* [CoreJs.FileSystem.Loader.Resource](reference/FileSystem/Loader/Resource.html)
-* [CoreJs.FileSystem.Loader.Formatter.FromText](reference/FileSystem/Loade/Formatter/FromText)
+* [CoreJs.FileSystem.Loader](reference/FileSystem/Loader.html)
+* [CoreJs.FileSystem.Loader.Formatter.Creator](reference/FileSystem/Loade/Formatter/Creator.html)
+* [CoreJs.FileSystem.Loader.Formatter.Parser](reference/FileSystem/Loade/Formatter/Parser.html)
 

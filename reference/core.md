@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CoreJS-W3C Reference - core.js
+title: CoreJS-W3C Reference
 permalink: /reference/core.html
 ---
 [<< Back](reference/)
