@@ -3,7 +3,7 @@ layout: default
 title: CoreJS-W3C Reference
 permalink: /reference/FileSystem/Loader/Formatter/Parser.html
 ---
-[<< Back](reference/FileSystem/Loader.html)
+[<< Back](reference/)
 
 # (interface) CoreJs.FileSystem.Formatter.Parser
 The resource parser.

@@ -13,7 +13,7 @@ permalink: /reference/core.html
 	* [CoreJs.Event](reference/core.html#corejseventtype-detail)
 	* [CoreJs.Event.Handler](reference/core.html#corejseventhandler)
 	* [CoreJs.Event.Listener](reference/core.html#corejseventlistener)
-	* [CoreJs.Ajax](reference/core.html#corejsajaxmethod-url-sendData)
+	* [CoreJs.Ajax](reference/core.html#corejsajaxmethod-url-senddata)
 	* [CoreJs.Ajax.Event](reference/core.html#corejsajaxeventtype-detail)
 
 # Intro

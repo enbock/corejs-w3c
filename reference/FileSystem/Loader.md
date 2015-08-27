@@ -25,4 +25,4 @@ Contains in `detail.data` the loaded content.
 
 # Implementation
 
-*  [CoreJs.FileSystem.Loader.Network](/reference/FileSystem/Loader/Network.html)
+*  [CoreJs.FileSystem.Loader.Network](reference/FileSystem/Loader/Network.html)

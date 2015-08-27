@@ -11,8 +11,8 @@ Loads a file from the internet resources.
 
 *Parameters:*
 
-* request [CoreJs.Ajax](reference/core.html#corejsajaxmethod-url-sendData) The configured resouces request object.
-* creator [CoreJs.FileSystem.Loader.Formatter.Creator](reference/FileSystem/Loade/Formatter/Creator.html) The formatter and parser creator.
+* request [CoreJs.Ajax](reference/core.html#corejsajaxmethod-url-senddata) The configured resouces request object.
+* creator [CoreJs.FileSystem.Loader.Formatter.Creator](reference/FileSystem/Loader/Formatter/Creator.html) The formatter and parser creator.
 
 ## Events
 
