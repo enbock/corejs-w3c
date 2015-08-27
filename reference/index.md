@@ -34,5 +34,5 @@ the project been loaded into:
 
 * [CoreJs.FileSystem.Loader](reference/FileSystem/Loader.html)
 * [CoreJs.FileSystem.Loader.Formatter.Creator](reference/FileSystem/Loade/Formatter/Creator.html)
-* [CoreJs.FileSystem.Loader.Formatter.Parser](reference/FileSystem/Loade/Formatter/Parser.html)
+* [CoreJs.FileSystem.Loader.Formatter.Parser](reference/FileSystem/Loader/Formatter/Parser.html)
 
