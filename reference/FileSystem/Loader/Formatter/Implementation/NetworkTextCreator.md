@@ -14,7 +14,7 @@ Create a response text parser.
 
 *Parameters:*
 
-* response Response detail data.
+* response [Object](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2) Response detail data.
 
 *Returns:*
 
