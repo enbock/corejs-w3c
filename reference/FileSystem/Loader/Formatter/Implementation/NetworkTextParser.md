@@ -1,7 +1,7 @@
 ---
 layout: default
 title: CoreJS-W3C Reference
-permalink: /reference/FileSystem/Loader/Formatter/Implementation/NetworkTextCreator.html
+permalink: /reference/FileSystem/Loader/Formatter/Implementation/NetworkTextParser.html
 ---
 [<< Back](reference/FileSystem/Loader/Formatter/Parser.html)
 
