@@ -19,3 +19,4 @@ Create a response text parser.
 *Returns:*
 
 * [CoreJs.FileSystem.Loader.Formatter.Implementation.NetworkTextParser](reference/FileSystem/Loader/Formatter/Implementation/NetworkTextParser.html)
+
