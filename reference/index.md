@@ -33,6 +33,6 @@ the project been loaded into:
 ### Resouce handling
 
 * [CoreJs.FileSystem.Loader](reference/FileSystem/Loader.html)
-* [CoreJs.FileSystem.Loader.Formatter.Creator](reference/FileSystem/Loade/Formatter/Creator.html)
+* [CoreJs.FileSystem.Loader.Formatter.Creator](reference/FileSystem/Loader/Formatter/Creator.html)
 * [CoreJs.FileSystem.Loader.Formatter.Parser](reference/FileSystem/Loader/Formatter/Parser.html)
 
