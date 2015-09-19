@@ -18,5 +18,5 @@ Create a response text parser.
 
 *Returns:*
 
-* [CoreJs.FileSystem.Loader.Formatter.Network.Parser.Text](reference/FileSystem/Loader/Formatter/Network.Parser.Text.html)
+* [CoreJs.FileSystem.Loader.Formatter.Network.Parser.Text](reference/FileSystem/Loader/Formatter/Network/Parser/Text.html)
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: CoreJS-W3C Reference
-permalink: /reference/FileSystem/Loader/Formatter/Network/Parser/Html.html
+permalink: /reference/FileSystem/Loader/Formatter/Network/Creator/Html.html
 ---
 [<< Back](reference/FileSystem/Loader/Formatter/Creator.html)
 
