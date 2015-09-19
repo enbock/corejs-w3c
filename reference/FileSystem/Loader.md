@@ -12,17 +12,21 @@ is all which contains files or kind of files. Also internet resouces
 are a file system.
 
 
-## Internal class name
+## Inheritance
+
+* `CoreJs.Event.Listener`
+
+# CoreJs.FileSystem.Loader.Event
+The loader events.
+
+## Inheritance
 
 * `CoreJs.Event`
 
-## Event
-The loader events.
-
-### LOAD
+## LOAD
 The loaded event.
 Contains in `detail.data` the loaded content.
 
-# Implementation
+# Implementations
 
 *  [CoreJs.FileSystem.Loader.Network](reference/FileSystem/Loader/Network.html)
