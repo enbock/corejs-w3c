@@ -11,10 +11,17 @@ namespace("CoreJs.FileSystem", function() {
 	function Loader() {
 		CoreJs.Event.Listener.call(this);
 	}
-	Loader.prototype = Object.create(CoreJs.Event.Listener);
+	Loader.prototype = Object.create(CoreJs.Event.Listener.prototype);
 	this.Loader = Loader.prototype.constructor = Loader;
-
-	Loader.Event = CoreJs.Event;
+	
+	/**
+	 * The loader event.
+	 */
+	Loader.Event = function (typeArg, detail) {
+		return CoreJs.Event.call(this, typeArg, detail);
+	}
+	Loader.Event.prototype = Object.create(CoreJs.Event.prototype);
+	Loader.Event.prototype.constructor = Loader.Event;
 	/**
 	 * The loaded event.
 	 * Contains in `detail.data` the loaded content.
@@ -25,5 +32,4 @@ namespace("CoreJs.FileSystem", function() {
 	 * Initiate the load process.
 	 */
 	Loader.prototype.load = new Function();
-
 });

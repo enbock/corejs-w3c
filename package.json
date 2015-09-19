@@ -5,7 +5,7 @@
 	"author": "Endre Bock <dev@itbock.de>",
 	"main": "src/core.js",
 	"scripts": {
-		"test": "mocha tests/index.js"
+		"test": "mocha tests/coreTests.js && mocha tests/libTests.js"
 	},
 	"repository": {
 		"type": "git",

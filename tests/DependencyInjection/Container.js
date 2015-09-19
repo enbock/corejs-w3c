@@ -1,4 +1,4 @@
-
+/* global assert, it, afterEach, beforeEach, describe */
 
 describe("CoreJs.DependencyInjection.Container", function() {
 	var context, oldContext;

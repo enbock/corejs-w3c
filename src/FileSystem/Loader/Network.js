@@ -17,8 +17,15 @@ namespace("CoreJs.FileSystem.Loader", function() {
 		this.ajax    = request;
 		this.creator = creator;
 	}
-	Network.prototype = Object.create(CoreJs.FileSystem.Loader);
+	Network.prototype = Object.create(CoreJs.FileSystem.Loader.prototype);
 	this.Network = Network.prototype.constructor = Network;
+	
+	/**
+	 * String conversion.
+	 */
+	Network.prototype.toString = function() {
+		return "[CoreJs.FileSystem.Loader.Network]";
+	}
 	
 	/**
 	 * Initiate the load process.
@@ -34,7 +41,7 @@ namespace("CoreJs.FileSystem.Loader", function() {
 	Network.prototype.handleEvent = function(event) {
 		switch (event.type) {
 			case CoreJs.Ajax.Event.LOAD:
-				this.ajax.addEventListener(CoreJs.Ajax.Event.LOAD, this);
+				this.ajax.removeEventListener(CoreJs.Ajax.Event.LOAD, this);
 				this.onLoaded(event.detail);
 			break;
 		}

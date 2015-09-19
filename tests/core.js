@@ -151,7 +151,7 @@ describe("Ajax", function () {
 			.to.be.an.instanceOf(sinon.FakeXMLHttpRequest);
 	});
 	
-	it("#tostring", function () {
+	it("#toString", function () {
 		expect(String(testObject)).is.equal("[Ajax post http://itbock.de]");
 	});
 
