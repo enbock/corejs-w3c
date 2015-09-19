@@ -1,11 +1,11 @@
 ---
 layout: default
 title: CoreJS-W3C Reference
-permalink: /reference/FileSystem/Loader/Formatter/Implementation/NetworkTextParser.html
+permalink: /reference/FileSystem/Loader/Formatter/Network/Parser/Text.html
 ---
 [<< Back](reference/FileSystem/Loader/Formatter/Parser.html)
 
-# CoreJs.FileSystem.Loader.Formatter.Implementation.NetworkTextParser
+# CoreJs.FileSystem.Loader.Formatter.Network.Parser.Text
 The text resource parser.    
 Convert the loaded data into string object.
 

@@ -1,11 +1,11 @@
 ---
 layout: default
 title: CoreJS-W3C Reference
-permalink: /reference/FileSystem/Loader/Formatter/Implementation/NetworkTextCreator.html
+permalink: /reference/FileSystem/Loader/Formatter/Network/Creator/Text.html
 ---
 [<< Back](reference/FileSystem/Loader/Formatter/Creator.html)
 
-# CoreJs.FileSystem.Loader.Formatter.Implementation.NetworkTextCreator
+# CoreJs.FileSystem.Loader.Formatter.Network.Creator.Text
 The text creator.    
 Create parsers and formatters for text network resources.
 
@@ -18,5 +18,5 @@ Create a response text parser.
 
 *Returns:*
 
-* [CoreJs.FileSystem.Loader.Formatter.Implementation.NetworkTextParser](reference/FileSystem/Loader/Formatter/Implementation/NetworkTextParser.html)
+* [CoreJs.FileSystem.Loader.Formatter.Network.Parser.Text](reference/FileSystem/Loader/Formatter/Network.Parser.Text.html)
 

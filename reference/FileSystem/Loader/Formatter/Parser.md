@@ -23,4 +23,5 @@ Parse the data and return the result.
 
 ## Implementation
 
-* [CoreJs.FileSystem.Loader.Formatter.Implementation.NetworkTextParser](reference/FileSystem/Loader/Formatter/Implementation/NetworkTextParser.html)
+* [CoreJs.FileSystem.Loader.Formatter.Network.Parser.Html](reference/FileSystem/Loader/Formatter/Network/Parser/Html.html)
+* [CoreJs.FileSystem.Loader.Formatter.Network.Parser.Text](reference/FileSystem/Loader/Formatter/Network/Parser/Text.html)

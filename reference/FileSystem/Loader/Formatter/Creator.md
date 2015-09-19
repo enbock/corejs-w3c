@@ -22,4 +22,5 @@ Create a response parser.
 
 ## Implementations
 
-* [CoreJs.FileSystem.Loader.Formatter.Implementation.NetworkTextCreator](reference/FileSystem/Loader/Formatter/Implementation/NetworkTextCreator.html)
+* [CoreJs.FileSystem.Loader.Formatter.Network.Creator.Html](reference/FileSystem/Loader/Formatter/Network/Creator/Html.html)
+* [CoreJs.FileSystem.Loader.Formatter.Network.Creator.Text](reference/FileSystem/Loader/Formatter/Network/Creator/Text.html)
