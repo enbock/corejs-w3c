@@ -1,4 +1,5 @@
 /* global namespace, CoreJS */
+use("CoreJs.FileSystem.Loader.Formatter.Creator");
 
 namespace("CoreJs.FileSystem.Loader.Formatter.Implementation", function() {
 	/**

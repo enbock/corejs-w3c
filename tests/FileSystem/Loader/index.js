@@ -1,3 +1,4 @@
-require("../../../src/FileSystem/Loader/Network.js");
+use("CoreJs.FileSystem.Loader.Network");
+
 require("./Network.js");
 require("./Formatter");
