@@ -10,7 +10,7 @@ describe(
 				position.should.equal("beforeend");
 			}
 		}
-		var testObject = new CoreJs.FileSystem.Loader.Formatter.Implementation.NetworkHtmlParser(
+		var testObject = new CoreJs.FileSystem.Loader.Formatter.Network.Parser.Html(
 			null
 			, node
 			, {
