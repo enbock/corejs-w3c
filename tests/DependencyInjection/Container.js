@@ -5,16 +5,17 @@ describe("CoreJs.DependencyInjection.Container", function() {
 	
 	beforeEach(function() {
 		oldContext  = use.context;
-		use.context = context = {};
-		namespace("TCoreJs", function() {
-			this.Test = function(injected) {
-				this.isCreated = true;
-				this.injected  = injected;
-			};
-			this.Other = function() {
-				this.theOther = true;
-			};
-		});
+		use.context = context = {
+			TCoreJs: {
+				Test: function(injected) {
+					this.isCreated = true;
+					this.injected  = injected;
+				},
+				Other: function() {
+					this.theOther = true;
+				}
+			}
+		};
 	});
 	
 	afterEach(function() {
