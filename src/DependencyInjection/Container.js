@@ -73,8 +73,10 @@ namespace("CoreJs.DependencyInjection", function() {
 		var service = Object.create(classObject.prototype);
 		classObject.apply(service, cfg.arguments);
 	
-		// buffer the service
-		this.services[name] = service;
+		if(!cfg.hasOwnProperty("forceCreate") && cfg.forceCreate !== true) {
+			// buffer the service
+			this.services[name] = service;
+		}
 	
 		return service;
 	};
