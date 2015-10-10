@@ -326,7 +326,7 @@ function namespace(fullQualifiedNameSpace, contentCall) {
 		if (error instanceof ReferenceError || error instanceof TypeError) {
 			// some dependencies not loaded yet
 			namespace._queue.push(
-				{ns: fullQualifiedNameSpace, call: contentCall}
+				{ns: fullQualifiedNameSpace, call: contentCall, lastError:error}
 			);
 		} else {
 			throw error;
@@ -339,16 +339,29 @@ global.namespace = namespace;
  * Load handler.
  * Invoked by use-loading and repeat failed content calls.
  */
-namespace.handleEvent = function() {
+namespace.handleEvent = function(event, limit) {
 	var queue = namespace._queue
-	, i
-	, entry
+		, i
+		, entry
 	;
+	limit = limit === undefined ? 0 : limit;
+	if(limit >= 100) {
+		throw namespace._queue[0].lastError;
+	}
+	
 	namespace._queue = [];
 	for(i in queue) {
 		entry = queue[i];
 		namespace(entry.ns, entry.call);
-	}  
+	}
+	
+	if(queue.length != namespace._queue.length) limit = 0;
+	
+	if(use.loadCount == 0 && namespace._queue.length > 0) {
+		// Nothing to load, but unsuccess namespace block
+		// ==> upper element need later element...call the upper again
+		namespace.handleEvent(event, limit + 1);
+	}
 }
 namespace._queue = [];
  
@@ -393,10 +406,12 @@ function use(fullQualifiedClassName) {
 	;
 	
 	if (container._loader === null) {
+		use.loadCount++;
 		container._loader = Ajax.factory(
 			"get", container._path + use.fileExtension
 		);
 		container._loader.addEventListener(Ajax.Event.LOAD, function(event) {
+			use.loadCount--;
 			// Load into script ram
 			container._class = new Function(event.detail.responseText);
 			// Import into context
@@ -461,6 +476,10 @@ use.basePath = ".";
  * Path configs.
  */
 use._psr4 = {};
+/**
+ * Loading count.
+ */
+use.loadCount = 0;
 
 /**
  * Set the path for a psr-4.

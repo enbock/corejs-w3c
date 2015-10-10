@@ -245,14 +245,17 @@ describe("namespace", function() {
 	it("#add to queue", function() {
 		var mock    = sinon.mock();
 		var context = new Function();
-		
+		var error   = new TypeError();
 		use.context = context;
-		mock.throws(new TypeError());
+		mock.throws(error);
 			
 		namespace("Test", mock);
 		
 		mock.should.called;
-		assert.deepEqual(namespace._queue, [{ns:"Test", call:mock}]);
+		assert.deepEqual(
+			namespace._queue
+			, [{ns:"Test", call:mock, lastError: error}]
+		);
 		context.should.include.keys("Test");
 	});
 	
@@ -277,17 +280,34 @@ describe("namespace", function() {
 	
 	it("#handleEvent", function() {
 		var mock    = sinon.mock();
-		namespace._queue = [{ns:"Test", call:mock}];
+		var error   = new TypeError();
+		
+		mock.onFirstCall().throws(error);
+		mock.atLeast(2);
+		namespace._queue = [{ns:"Test", call:mock, lastError: error}];
 		
 		namespace.handleEvent();
 		
 		mock.should.called;
-	})
+	});
+	
+	it("#handleEvent in endless loop", function() {
+		var mock    = sinon.mock();
+		var error   = new TypeError();
+
+		mock.throws(error);
+		mock.atLeast(2);
+		namespace._queue = [{ns:"Test", call:mock, lastError: error}];
+		
+		expect(function() { namespace.handleEvent(null, 98); }).to.throw(error);
+		
+		mock.should.called;
+	});
 	
 	afterEach(function() {
 		use.context      = new Function();
 		namespace._queue = [];
-	})
+	});
 });
 
 /**
