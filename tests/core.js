@@ -295,7 +295,11 @@ describe("namespace", function() {
  */
 describe("use", function() {
 	it("#load file", function() {
-		var eventTarget = new CoreJs.Ajax();
+		var orgFact = CoreJs.Ajax.factory;
+		var eventTarget = {
+			addEventListener: new Function()
+			, load: new Function()
+		};
 		sinon.stub(eventTarget);
 		var factory     = sinon.mock();
 		var contextStub = sinon.stub(namespace, "getContext");
@@ -333,6 +337,109 @@ describe("use", function() {
 		assert.equal(use._psr4.Use.Test.Space._path, "http://itbock.de/Space");
 		use._psr4.Use.Test.Space._class.should.be.instanceOf(Function);
 		use._psr4.Use.Test.Space._loader.should.equal(eventTarget);
+		CoreJs.Ajax.factory = orgFact;
+		contextStub.restore();
+	});
+	
+	it("#load into existing namespace", function() {
+		var eventTarget = {
+			addEventListener: new Function()
+			, load: new Function()
+		}
+		sinon.stub(eventTarget);
+		var factory      = sinon.mock();
+		var contextStub  = sinon.stub(namespace, "getContext");
+		var context      = new Function();
+		context.Space    = new Function();
+		var extraContext = context.Space.Extra = {will: "be hold"};
+		
+		factory.onCall(0).returns(eventTarget);
+		contextStub.onCall(0).returns(context);
+		CoreJs.Ajax.factory = factory;
+		
+		eventTarget.addEventListener.callsArgWith(
+			1
+			, {
+				detail: {
+					responseText: "this.Space = function() { var test = 1; };"
+				}
+			}
+		);
+		
+		use.psr4("Use.Test", "http://itbock.de");
+		
+		use("Use.Test.Space");
+		
+		context.Space.Extra.should.equal(extraContext);
+		contextStub.restore();
+	});
+	
+	it("#load into conflicting namespace", function() {
+		var eventTarget = {
+			addEventListener: new Function()
+			, load: new Function()
+		}
+		sinon.stub(eventTarget);
+		var factory      = sinon.mock();
+		var contextStub  = sinon.stub(namespace, "getContext");
+		var context      = new Function();
+		context.Space    = new Function();
+		context.Space.Extra = {will: "be hold"};
+		
+		factory.onCall(0).returns(eventTarget);
+		contextStub.onCall(0).returns(context);
+		CoreJs.Ajax.factory = factory;
+		
+		eventTarget.addEventListener.callsArgWith(
+			1
+			, {
+				detail: {
+					responseText: 
+						"this.Space = function() { var test = 1; };"
+						+ "this.Space.Extra = 'conflicted';"
+				}
+			}
+		);
+		
+		use.psr4("Use.Test", "http://itbock.de");
+		
+		expect(function() {use("Use.Test.Space");}).to.throw(Error);
+		
+		context.Space.Extra.should.equal('conflicted'); // not restored
+		contextStub.restore();
+	});
+	
+	it("#load with existing namespace into unknown place", function() {
+		var eventTarget = {
+			addEventListener: new Function()
+			, load: new Function()
+		}
+		sinon.stub(eventTarget);
+		var factory      = sinon.mock();
+		var contextStub  = sinon.stub(namespace, "getContext");
+		var context      = new Function();
+		context.Space    = new Function();
+		var extraContext = context.Space.Extra = {will: "be hold"};
+		
+		factory.onCall(0).returns(eventTarget);
+		contextStub.onCall(0).returns(context);
+		CoreJs.Ajax.factory = factory;
+		
+		eventTarget.addEventListener.callsArgWith(
+			1
+			, {
+				detail: {
+					responseText: "this.func = function() { var test = 1; };"
+				}
+			}
+		);
+		
+		use.psr4("Use.Test", "http://itbock.de");
+		
+		use("Use.Test.Space");
+		
+		context.should.include.keys("func");
+		context.Space.Extra.should.equal(extraContext);
 		contextStub.restore();
 	});
  });

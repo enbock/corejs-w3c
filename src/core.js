@@ -369,6 +369,8 @@ namespace.getContext = function(fullQualifiedNameSpace) {
 		domain = domains[i];
 		if (!context.hasOwnProperty(domain)) {
 			context[domain] = new Function();
+			// Try to block namespace object to be instantiate
+			context[domain].prototype = undefined;
 		}
 		context = context[domain];
 	}
@@ -382,7 +384,13 @@ namespace.getContext = function(fullQualifiedNameSpace) {
  * @signleton
  */
 function use(fullQualifiedClassName) {
-	var container = use.getContainer(fullQualifiedClassName);
+	var container = use.getContainer(fullQualifiedClassName)
+		, domains
+		, className
+		, contextBackup = null
+		, context
+		, property
+	;
 	
 	if (container._loader === null) {
 		container._loader = Ajax.factory(
@@ -392,11 +400,39 @@ function use(fullQualifiedClassName) {
 			// Load into script ram
 			container._class = new Function(event.detail.responseText);
 			// Import into context
-			var domains = fullQualifiedClassName.split(use.classPathDelimiter);
-			domains.pop();
-			container._class.call(
-				namespace.getContext(domains.join(use.classPathDelimiter))
+			domains = fullQualifiedClassName.split(use.classPathDelimiter);
+			className = domains.pop();
+			
+			context = namespace.getContext(
+				domains.join(use.classPathDelimiter)
 			);
+			// Save old class name
+			if (context.hasOwnProperty(className)) {
+				contextBackup = context[className];
+				delete context[className];
+			}
+			// Run loaded code
+			container._class.call(context);
+			
+			// Restore backup
+			if (contextBackup !== null) {
+				if (context.hasOwnProperty(className)) {
+					for(property in contextBackup) {
+						if(context[className].hasOwnProperty(property)) {
+							throw new Error(
+								"CoreJs: " +
+								"Overlapping namespace with class " +
+								"property detected."
+							);
+						} else {
+							context[className][property] = contextBackup[property];
+						}
+					}
+				} else {
+					// mhh loaded class added in unexpected place
+					context[className] = contextBackup;
+				}
+			}
 		});
 		container._loader.addEventListener(
 			Ajax.Event.LOAD, namespace.handleEvent
