@@ -398,11 +398,6 @@ namespace.getContext = function(fullQualifiedNameSpace) {
  */
 function use(fullQualifiedClassName) {
 	var container = use.getContainer(fullQualifiedClassName)
-		, domains
-		, className
-		, contextBackup = null
-		, context
-		, property
 	;
 	
 	if (container._loader === null) {
@@ -411,6 +406,9 @@ function use(fullQualifiedClassName) {
 			"get", container._path + use.fileExtension
 		);
 		container._loader.addEventListener(Ajax.Event.LOAD, function(event) {
+			var  domains
+				, className
+			;
 			use.loadCount--;
 			// Load into script ram
 			container._class = new Function(event.detail.responseText);
@@ -418,36 +416,36 @@ function use(fullQualifiedClassName) {
 			domains = fullQualifiedClassName.split(use.classPathDelimiter);
 			className = domains.pop();
 			
-			context = namespace.getContext(
-				domains.join(use.classPathDelimiter)
-			);
-			// Save old class name
-			if (context.hasOwnProperty(className)) {
-				contextBackup = context[className];
-				delete context[className];
-			}
-			// Run loaded code
-			container._class.call(context);
-			
-			// Restore backup
-			if (contextBackup !== null) {
-				if (context.hasOwnProperty(className)) {
+			namespace(domains.join(use.classPathDelimiter), function() {
+				var contextBackup = null
+					, property
+				;
+				// Save old class name
+				if(this.hasOwnProperty(className)) {
+					contextBackup = this[className];
+				}
+				// Run loaded code
+				container._class.call(this);
+				
+				// Restore backup
+				if (contextBackup === null) return;
+				if (this[className] !== contextBackup) {
 					for(property in contextBackup) {
-						if(context[className].hasOwnProperty(property)) {
+						if(property == className) continue;
+						if(this[className].hasOwnProperty(property)) {
 							throw new Error(
-								"CoreJs: " +
-								"Overlapping namespace with class " +
-								"property detected."
+								"CoreJs: "
+								+ "Overlapping namespace with class "
+								+ "property '"
+								+ fullQualifiedClassName +"."+property
+								+"' detected."
 							);
 						} else {
-							context[className][property] = contextBackup[property];
+							this[className][property] = contextBackup[property];
 						}
 					}
-				} else {
-					// mhh loaded class added in unexpected place
-					context[className] = contextBackup;
 				}
-			}
+			});
 		});
 		container._loader.addEventListener(
 			Ajax.Event.LOAD, namespace.handleEvent
