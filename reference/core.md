@@ -265,6 +265,14 @@ Typical is the `use` placed in the loading code of the [namespace](reference/cor
 The source url will be configured in the [PSR-4](http://www.php-fig.org/psr/psr-4/)
 setup.
 
+### *Info*
+The `use` works together with `namespace`. In the moment a file is loaded
+via PSR-4 configured class definition, will `use` configure the namespace
+automatically.
+
+Since `0.3.2` is it not anymore necessary to wrap the class code with a
+`namespace` call.
+
 ### (static) use.context
 The destination context object. The default value is [window](https://html.spec.whatwg.org/multipage/browsers.html#dom-window).
 

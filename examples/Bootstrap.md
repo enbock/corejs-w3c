@@ -40,6 +40,8 @@ In follow is used the code of the [Page Manger](http://page-manager.itbock.de/).
 		window.removeEventListener("load", this);
 		
 		// load & start application
+		// Info: namespace() is neccesary to have an auto-re-try after loading
+		//       the main files.
 		namespace("PageManager", function() {
 			(new CoreJs.Bootstrap.HeadCleaner(document.head)).clean();
 			
